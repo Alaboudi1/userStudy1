@@ -7,13 +7,15 @@ module.exports = {
     expertise: {
       Q1: ""
     },
+  },
     tasks: [
       {
+        id:"1",
         subtask1: {
           hypotheses: [
             {
               hypothesis: "",
-              justification: "",
+              evidence: "",
               triggers: ""
             }
           ]
@@ -22,7 +24,7 @@ module.exports = {
           hypotheses: [
             {
               hypothesis: "",
-              justification: "",
+              evidence: "",
               triggers: "",
               status: ""
             }
@@ -31,5 +33,4 @@ module.exports = {
       },
       {}
     ]
-  }
 };

@@ -27,9 +27,6 @@ export const welcome = () => html`
         `;
 
 export const assessment = (assessment, participant) => {
-  // if (assessment.numberAssessmentQuestions < participant.current.question)
-  //   return renderPage("task");
-
   const question = assessment["Q" + participant.current.question];
   const questionHTML = html`
       <div class="jumbotron jumbotron-fluid">
@@ -95,7 +92,6 @@ export const assessment = (assessment, participant) => {
             <button id ="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
         <br>
     </div>
-      
       `;
   participant.current.question++;
 
@@ -103,34 +99,79 @@ export const assessment = (assessment, participant) => {
 };
 
 export const task = (tasks, participant) => {
-
   const task = tasks["task" + participant.current.task];
+  const hypotheses =
+    participant.tasks[participant.current.task-1][
+      `subtask${participant.current.subtask}`
+    ]["hypotheses"];
   const taskHTML = html`
-         <div class="jumbotron">
-            <h1 class="display-4">Task # ${participant.current.task}</h1>
-            <h3>Stage # ${participant.current.subtask}</h3>
-    
-            <p class="lead"> Please read the following bug report and write down your hypotheses.  </p>
-    
-            <hr class="my-4">
-            <p>${task.description}</p>
-            <button id="refresh" class="btn btn-primary float-right">refresh</button>
-            <br>
-            <p class="lead">
-            <iframe id="application" src=${
-              task["binURL" + participant.current.subtask]
-            } width="1400px" height="1300;"></iframe>
-            </p>
-            <div  style="width: 500px; margin:auto;">
-            <button id ="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
+             <div class="jumbotron">
+        <h1 class="display-4">Task # ${participant.current.task}</h1>
+        <h3>Stage # ${participant.current.subtask}</h3>
+        <p class="lead"> Please read the following bug report and write down your hypotheses. </p>
+        <hr class="my-4">
+        <p>${task.description}</p>
+        <button id="refresh" class="btn btn-primary float-right">refresh</button>
         <br>
-            </div>`;
-  if (participant.current.task <= tasks.numberTasks) {
-    if (participant.current.subtask < tasks.numberSubTasks) {
-      participant.current.subtask++;
-    } else {
-      participant.current.task++;
-    }
-  }
+        <p class="lead">
+            <div class="embed-responsive embed-responsive-1by1">
+                <iframe id="application" src=${
+                  task["binURL" + participant.current.subtask]
+                } width="1400px" height="1300;" class="embed-responsive-item"></iframe>
+            </div>
+        </p>
+        <div class="card text-center">
+            <div class="card-header">
+                Hypotheses and Triggers
+            </div>
+            <div id = "hypotheses" class="card-body">
+               ${hypotheses.map((hypothesis, index) =>
+                 getHypothesisForum(
+                  index + 1,
+                   participant.current.subtask,
+                   hypothesis,
+                 )
+               )}
+            </div>
+            <div style="width: 300px; margin:auto;">
+              <button id="addHypothesis" class="btn btn-success">Add another Hypothesis</button>
+            </div>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
+        <div style="width: 500px; margin:auto;">
+            <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
+            <br>
+        </div>`;
+
   return taskHTML;
 };
+
+export const getHypothesisForum = (
+  index,
+  sub = 1,
+  { hypothesis, triggers, evidence } = {
+    hypothesis: "",
+    evidence: "",
+    triggers: ""
+  }
+) => html`
+<h5 class="card-title">Hypothesis # ${index}</h5>
+<p class="card-text">
+    <div class="border-bottom border-dark ">
+        <div class="form-group">
+            <label for="hypothesis">hypothesis</label>
+            <textarea class="form-control" id="hypothesis${index}" rows="3">${hypothesis}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="triggers">triggers</label>
+            <textarea class="form-control" id="triggers${index}" rows="3">${triggers}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="evidence">evidence</label>
+            <textarea class="form-control" id="evidence${index}" rows="3">${evidence}</textarea>
+        </div>
+    </div>
+</p>`;
