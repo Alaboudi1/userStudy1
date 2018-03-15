@@ -91,7 +91,9 @@ export const experiment = {
     numberTasks: 4,
     numberSubTasks: 3,
     task1: {
-      description: `I'm trying to make a shopping cart using JS and one of my tasks is to create a placeOrder function.
+      description: `
+      <h3>Function returning undefined after calling in string</h3>
+      I'm trying to make a shopping cart using JS and one of my tasks is to create a placeOrder function.
       <ul><li>The placeOrder() function accepts one argument, a credit card number.</li> 
       <li>If no argument is received, the function should print out Sorry, we don't have a credit card on file for you.</li>
       <li>If a card number is received, the function should print out Your total cost is $71, which will be charged to the card 83296759. Then, it should empty the cart array.</li>
@@ -99,10 +101,21 @@ export const experiment = {
       However, when I call in the total function into the string keeps returning undefined.`,
       binURL1: "https://jsbin.com/xaxodeg/edit?console,output",
       binURL2: "https://jsbin.com/xaxodeg/edit?js",
-      binURL3: "https://jsbin.com/xaxodeg/edit?js,console,output"
+      binURL3: "https://jsbin.com/xaxodeg/edit?js,console,output",
+      expertHypothesis1:
+        "Getting a value from asynchronous function in synchronous way",
+      evidence1:
+        "Check if you are dealing with any asynchronous call, e.g. http call. if so, try to wait until the call ends using promise.then.",
+      expertHypothesis2: "You are calling the wrong function!",
+      evidence2:
+        "Check if you have the correct function name or you are using the correct API and not something similar.",
+      expertHypothesis3: "The function is not returning a value",
+      evidence3: "Check if each possible path in the function return a value."
     },
     task2: {
-      description: `I am relatively new to JavaScript.
+      description: `
+      <h3>Change Link Visibility — Event Listener with mouseover and getElementsByClassName</h3>
+      I am relatively new to JavaScript.
       I've searched the internet over and found what people are calling solutions and correct scripts and fixes etc., but none of them seem to work for me so I'm clearly missing something. Been troubleshooting for hours now. Please help!
       CSS: I have created a simple two-column div (out of 12, it's floated left). I have a CSS transition in place to pull it from 2% width to 15% width (nearly the full two columns) on hover.
       HTML: I created a few test links in the div which I've hidden with a CSS class.
@@ -110,7 +123,17 @@ export const experiment = {
       Thank you.`,
       binURL1: "https://Alaboudi1.jsbin.com/vabolok/6/edit?output",
       binURL2: "https://Alaboudi1.jsbin.com/vabolok/7/edit?html,js",
-      binURL3: "https://jsbin.com/vabolok/8/edit?html,output,js,console"
+      binURL3: "https://jsbin.com/vabolok/8/edit?html,output,js,console",
+      expertHypothesis1: "Not using the correct CSS property",
+      evidence1:
+        "Check if you are using the correct CSS property to change the visibility of an element. Example:visibility: visible or hidden, display:none or block",
+      expertHypothesis2:
+        "You are using the wrong DOM API or not using it correctly.",
+      evidence2:
+        "Check of you using the correct DOM API. Also check the returning value of that API: array vs node element vs html element.",
+      expertHypothesis3: "You have a spelling mistake",
+      evidence3:
+        "HTML and CSS do not complain about wrong syntax. So, please make sure that you spell everything correctly."
     },
     task3: {
       description: `
@@ -118,15 +141,34 @@ export const experiment = {
       so I am trying to fetch from dogs API twice using the dog type to get the dog image  but I just get "TypeError: Cannot read property 'message' of undefined". Im fairly new to React so if it looks messy im sorry! Thanks in advance!`,
       binURL1: "https://jsbin.com/qazoyis/47/edit?console,output",
       binURL2: "https://Alaboudi1.jsbin.com/qazoyis/51/edit?js",
-      binURL3: "https://Alaboudi1.jsbin.com/qazoyis/52/edit?js,console,output"
+      binURL3: "https://Alaboudi1.jsbin.com/qazoyis/52/edit?js,console,output",
+      expertHypothesis1: "You have a fetching dependency.",
+      evidence1:
+        "Check if you have two or more unchain fetch calls but they have dependency in their contents. For example you are using an object inside the second fetch that suppose to arrive from the first fetch.",
+      expertHypothesis2:
+        "You are trying to access an object that is still not available.",
+      evidence2:
+        "Check that you are only accessing the object after making sure that it is available",
+      expertHypothesis3: "You have not bind 'this' to the component props",
+      evidence3:
+        "Check if your are binding this to each props in your component"
     },
     task4: {
       description: `<h3>d3.js Histogram does not show columns</h3>
       I am trying to create a d3 histogram but the columns are not showing up. I am new to d3 and have hours spent trying to figure it out with no success.`,
       binURL1: "https://Alaboudi1.jsbin.com/vinuram/12/edit?output",
       binURL2: "https://Alaboudi1.jsbin.com/vinuram/13/edit?js",
-      binURL3: "https://Alaboudi1.jsbin.com/vinuram/14/edit?js,console,output"
+      binURL3: "https://Alaboudi1.jsbin.com/vinuram/14/edit?js,console,output",
+      expertHypothesis1: "Not using the correct CSS property",
+      evidence1:
+        "Check if you are using the correct CSS property to change the visibility of an element. Example:visibility: visible or hidden, display:none or block",
+      expertHypothesis2:
+        "You have problem in the way you map the data to width or hight",
+      evidence2:
+        "check the method that set the width and see if the calculation is correct ",
+      expertHypothesis3: "Your data is not correctly formated",
+      evidence3:
+        "Check if your are data is correct and has no formating problem"
     }
   }
 };
-

@@ -398,8 +398,14 @@ export const task = (tasks, participant) => {
             </div>
             <br>
             <br>
+            <div style="width: 200px; margin:auto; display:${participant.current.subtask == 3 ? "block" : "none"}">
+        <button  data-role="assessment" class="btn btn-success btn-lg" id ="expertHelp"> Expert Help</button> 
+        </div> 
         </div>
+        <br>    
         <br>
+        <br>
+        <div id= "expertHypotheses"></div>
         <br>
         <div style="width: 500px; margin:auto;">
             <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
@@ -419,13 +425,17 @@ export const getHypothesisForum = (
   }
 ) => html`
 <h5 class="card-title">Hypothesis # ${index}
-<div class="custom-control custom-radio custom-control-inline" style= "display:${sub !== 1 ? 'block' : 'none'}">
+<div class="custom-control custom-radio custom-control-inline" style= "display:${
+  sub !== 1 ? "block" : "none"
+}">
         <input type="radio" id="status${index}Approve" name="status${index}" value= "Approve." class="custom-control-input">
         <label for="status${index}Approve" class="custom-control-label text-success">Approve</label>
         </div>
         
 
-        <div class="custom-control custom-radio custom-control-inline" style= "display:${sub !== 1 ? 'block' : 'none'}">
+        <div class="custom-control custom-radio custom-control-inline" style= "display:${
+          sub !== 1 ? "block" : "none"
+        }">
         <input type="radio" id="status${index}Disapprove" name="status${index}" value= "Disapprove" class="custom-control-input" checked >
         <label for="status${index}Disapprove" class="custom-control-label text-danger ">Disapprove</label>
         </div>
@@ -447,3 +457,38 @@ export const getHypothesisForum = (
         </div>
     </div>
 </p>`;
+
+//////
+export const getExpertHypotheses = (task) =>
+  [1, 2, 3].map(
+    index => html`
+  <h5 class="card-title">Hypothesis # ${index}
+  <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="expertStatus${index}Approve" name="expertStatus${index}" value= "Approve." class="custom-control-input">
+          <label for="expertStatus${index}Approve" class="custom-control-label text-success">Approve</label>
+          </div>
+          
+  
+          <div class="custom-control custom-radio custom-control-inline">
+          <input type="radio" id="expertStatus${index}Disapprove" name="expertStatus${index}" value= "Disapprove" class="custom-control-input" checked >
+          <label for="expertStatus${index}Disapprove" class="custom-control-label text-danger ">Disapprove</label>
+          </div>
+  
+  </h5>
+  <p class="card-text">
+      <div class="border-bottom border-dark ">
+          <div class="form-group">
+              <label for="hypothesis">hypothesis</label>
+              <textarea class="form-control" id="expertHypothesis${index}" rows="3">${task["expertHypothesis"+index]}</textarea>
+          </div>
+          <div class="form-group">
+              <label for="evidence">evidence</label>
+              <textarea class="form-control" id="expertEvidence${index}" rows="3">${task["evidence"+index]}</textarea>
+          </div>
+          <div class="form-group">
+              <label for="triggers">If this hypothesis is not relevant, please indicate why? </label>
+              <textarea class="form-control" id="expertWhy${index}" rows="3"></textarea>
+          </div>
+      </div>
+  </p>`
+  ).join("");
