@@ -7,6 +7,7 @@ export const append = (id, content) =>
   (document.getElementById(id).innerHTML += `${content}`);
 
 export const clearAll = () => {
+  window.scrollTo(0,0);
   [...document.getElementById("app").children].forEach(e => render(e.id, ""));
 };
 
