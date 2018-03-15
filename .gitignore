@@ -106,7 +106,6 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
-
 # nyc test coverage
 .nyc_output
 
@@ -125,7 +124,7 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
-
+src/config.js
 # Typescript v1 declaration files
 typings/
 
