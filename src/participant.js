@@ -62,7 +62,7 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: "",
-            status: ""
+            status: false
           }
         ]
       },
@@ -74,14 +74,14 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: "",
-            status: "",
-            ExpertHypotheses: [
-              {
-                hypothesis: "",
-                status: "",
-                why: ""
-              }
-            ]
+            status: false
+          }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
           }
         ]
       }
@@ -108,7 +108,7 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: "",
-            status: ""
+            status: false
           }
         ]
       },
@@ -120,14 +120,14 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: "",
-            status: "",
-            ExpertHypotheses: [
-              {
-                hypothesis: "",
-                status: "",
-                why: ""
-              }
-            ]
+            status: false
+          }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
           }
         ]
       }
@@ -154,7 +154,7 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: "",
-            status: ""
+            status: false
           }
         ]
       },
@@ -166,61 +166,14 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: "",
-            status: "",
-            ExpertHypotheses: [
-              {
-                hypothesis: "",
-                status: "",
-                why: ""
-              }
-            ]
+            status: false
           }
-        ]
-      }
-    },
-    {
-      id: "4",
-      expertHelp: false,
-      subtask1: {
-        subtaskStartTime: "",
-        subtaskEndTime: "",
-        hypotheses: [
+        ],
+        ExpertHypotheses: [
           {
             hypothesis: "",
-            evidence: "",
-            triggers: ""
-          }
-        ]
-      },
-      subtask2: {
-        subtaskStartTime: "",
-        subtaskEndTime: "",
-        hypotheses: [
-          {
-            hypothesis: "",
-            evidence: "",
-            triggers: "",
-            status: ""
-          }
-        ]
-      },
-      subtask3: {
-        subtaskStartTime: "",
-        subtaskEndTime: "",
-        expertHelp:"",
-        hypotheses: [
-          {
-            hypothesis: "",
-            evidence: "",
-            triggers: "",
-            status: "",
-            ExpertHypotheses: [
-              {
-                hypothesis: "",
-                status: "",
-                why: ""
-              }
-            ]
+            status: false,
+            why: ""
           }
         ]
       }

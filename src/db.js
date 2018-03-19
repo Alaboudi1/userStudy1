@@ -6,10 +6,12 @@ let database, uid;
 export const init = () => {
   firebase.initializeApp(config);
   database = firebase.database();
-  firebase.auth().signInAnonymously();
+  return firebase.auth().signInAnonymously().then(()=>{
+      uid = firebase.auth().currentUser.uid;
+      return database.ref(`test/participants/${uid}`).once('value')
+  });
 };
 
 export const save = participant => {
-    uid = firebase.auth().currentUser.uid;
-    database.ref(`participants/${uid}`).set(participant);
+    database.ref(`test/participants/${uid}`).set(participant);
 }

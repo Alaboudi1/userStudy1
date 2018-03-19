@@ -19,6 +19,7 @@ const renderPage = page => {
       ) {
         ui.getElement("assessments").classList.remove("active", "text-primary");
         ui.getElement("task1").classList.add("active", "text-primary");
+        db.save(participant);
         return renderPage("task");
       }
       participant.expertise[
@@ -33,11 +34,10 @@ const renderPage = page => {
           // @ts-ignore
         ).value;
         participant.expertise[`Q${participant.current.question}`] = answer;
-        participant.current.question++;
         participant.expertise[
           `Q${participant.current.question}EndTime`
         ] = getTime();
-        db.save(participant);
+        participant.current.question++;
         renderPage("assessment");
       });
       break;
@@ -73,39 +73,49 @@ const renderPage = page => {
           // @ts-ignore
           el.evidence = ui.getElement("evidence" + i).value;
           // @ts-ignore
-          el.triggers = ui.getElement("triggers" + i).value;
-          const status = document.querySelector(
-            `input[name="status${i}"]:checked`
-          );
+          // el.triggers = ui.getElement("triggers" + i).value;
+          const status = ui.getElement("hypothesisApprove" + i);
           // @ts-ignore
-          el.status = status !== null ? status.value : "";
+          el.status = status !== null ? status.checked : false;
         });
-        if (participant.current.subtask == 3) {
-          hypotheses.ExpertHypotheses = [1, 2, 3].map(i => {
-            if (ui.getElement("expertHypothesis" + i) == null) {
-              return {
-                hypothesis: "",
-                status: "",
-                why: ""
-              };
-            } else
-              return {
-                // @ts-ignore
-                hypothesis: ui.getElement("expertHypothesis" + i).value,
-                // @ts-ignore
-                evidence: ui.getElement("expertEvidence" + i).value,
-                status: document.querySelector(
-                  `input[name="expertStatus${i}"]:checked`
-                  // @ts-ignore
-                ).value,
-                // @ts-ignore
-                why: ui.getElement("expertWhy" + i).value
-              };
-          });
+        if (participant.tasks[participant.current.task - 1].expertHelp) {
+          const Expert =
+            participant.tasks[participant.current.task - 1][
+              `subtask${participant.current.subtask}`
+            ];
+          Expert.ExpertHypotheses = [1, 2, 3].map(
+            i =>
+              ui.getElement("expertWhy" + i).value == "" //validate the why is entered
+                ? "missingExpertWhy"
+                : {
+                    // @ts-ignore
+                    hypothesis: ui.getElement("expertHypothesis" + i).value,
+                    // @ts-ignore
+                    evidence: ui.getElement("expertEvidence" + i).value,
+                    status: ui.getElement(
+                      "expertHypothesisApprove" + i
+                      // @ts-ignore
+                    ).checked,
+                    // @ts-ignore
+                    why: ui.getElement("expertWhy" + i).value
+                  }
+          );
+          if (Expert.ExpertHypotheses.includes("missingExpertWhy")) {
+            alert("You need to write down you justification of why");
+            return;
+          }
+        } else if (participant.current.subtask == 3) {
+          const approve = hypotheses.filter(h => h.status);
+          if (approve.length == 0) {
+            alert(
+              "You need to approve at least one of your hypotheses or ask for expert help"
+            );
+            return;
+          }
         }
         if (participant.current.subtask < experiment.tasks.numberSubTasks) {
           participant.current.subtask++;
-          let hypotheses2 = hypotheses.map(e => ({ ...e, status: "" }));
+          let hypotheses2 = hypotheses.map(e => ({ ...e }));
           setHypotheses(hypotheses2);
         } else {
           ui
@@ -136,7 +146,8 @@ const renderPage = page => {
         hypotheses.push({
           hypothesis: "",
           evidence: "",
-          triggers: ""
+          triggers: "",
+          status: false
         });
         const div = document.createElement("div");
         div.innerHTML += utils.getHypothesisForum(
@@ -168,7 +179,24 @@ ui.attachEvent(ui.getElement("button"), "click", () => {
   ui.getElement("assessments").classList.add("active", "text-primary");
 });
 const getTime = () => new Date().toLocaleTimeString();
+console.log(participant);
 
-db.init();
+db.init().then(payload => {
+  console.log(payload.val());
+  if (payload.val()) {
+    console.log(participant);
+    participant.tasks = payload.val().tasks;
+    participant.current = payload.val().current;
+    participant.expertise = payload.val().expertise;
+    console.log(participant);
+    renderPage("task");
+  }
+});
 
 participant.current.startTime = getTime();
+
+ui.attachEvent(ui.getElement("skip"), "click", () => {
+  participant.current.task = ui.getElement("select").value;
+  participant.current.subtask = 1;
+  renderPage("task");
+});
