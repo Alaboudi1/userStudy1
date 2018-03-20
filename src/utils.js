@@ -4,36 +4,17 @@ export const welcome = () => html`
 <div class="jumbotron">
     <h1 class="display-4">Welcome!</h1>
     <p class="lead">Thank you for participating in this study! This study will take around two hours to complete. The aim of the study is
-        to closely examines the debugging activity through understanding how developers build hypotheses about the cause
+        to closely examines the debugging activity through understanding how developers build and share hypotheses about the cause
         of a bug. There will be three tasks that include three defected small applications taken from StackOverflow questions.
-        Each task, you will be asked to build hypotheses, write down the triggers you used to construct these hypotheses,
-        and how would you approve or disapprove these hypotheses.
+        Each task, you will be asked to write down your hypotheses, and how would you go about approving or disapproving these hypotheses.
 
     </p>
-    <p class="lead"> The process of building hypotheses for each defected application will be in three stages. The first stage through only
-        The input(i.e., GUI), the output (i.e., GUI, console) of the application as well as a short description of the problem
-        usually taken from the corresponding StackOverflow question. The second stage has only the bug report and the source
-        code. You will not be asked to fix the bug at this stage, but rather to review your hypotheses, approve or disapprove
-        them, and add more hypotheses as you gain more knowledge about the application. The third stage you will be asked
-        to validate your hypotheses by editing the code and trying to fix the bug. If this stage reveal more hypotheses,
-        please add and validate them. You will be asked to write down your hypotheses, triggers of the hypotheses, and evidence
-        that prove or disapprove the hypotheses for each stage. For the second stage, will be able to approve hypotheses
-        from the previous stage as well as disapprove them as you gain more understanding about the application.
-    </p>
-    <p class="lead">We further define these concepts below as well as give an example of a task. </p>
-    <p class="lead">
-        <ul>
-            <li>
-                <b>Hypothesis:</b> An assumption a developer has that explains the cause of behavior, possibly a bug, in an
-                application.
-            </li>
-            <li>
-                <b>Evidence:</b> A fact that proves or disapprove a hypothesis.</li>
-            <li>
-                <b>Triggers:</b> Keywords in the bug report or the code that prompt hypotheses. Also, these triggers can be
-                behavior in the application.</li>
-        </ul>
-
+    <p class="lead"> In this study, the process of building hypotheses for each defected application will span across three stages. 
+    In the first stage, you will be asked to write down your hypotheses by only having access to the bug report and the application user interface. 
+    In the second stage, you will be asked to approve your previous hypotheses after gaining access to the source code. 
+    You also can write more hypotheses at this stage.In the third stage, you will be asked To fix the bug by trying your previous hypotheses.
+    If you are not able to fix the bug using your previous hypotheses, and you are not able to generate any more hypotheses, you can check if you have the option to get expert help.
+    The expert help will be discussed in the last section of this introduction.
     </p>
     <p class="lead">
         <h2>Example:</h2>
@@ -319,14 +300,20 @@ export const assessment = (assessment, participant) => {
             }</code></pre>
             <br>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="answer1" name="assessment" value= ${question.answers[0].replace( /\s/g, "_" )} class="custom-control-input">
+                <input type="radio" id="answer1" name="assessment" value= ${question.answers[0].replace(
+                  /\s/g,
+                  "_"
+                )} class="custom-control-input">
                 <label for="answer1" class="custom-control-label">${
                   question.answers[0]
                 }
                 </label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
-                <input type="radio" id="answer2" name="assessment" value= ${question.answers[1].replace( /\s/g, "_" )} class="custom-control-input">
+                <input type="radio" id="answer2" name="assessment" value= ${question.answers[1].replace(
+                  /\s/g,
+                  "_"
+                )} class="custom-control-input">
                 <label for="answer2" class="custom-control-label">${
                   question.answers[1]
                 }
@@ -422,14 +409,19 @@ export const task = (tasks, participant) => {
         <br>
         <div style="width: 200px; margin:auto; display:${
           participant.current.subtask == 3 ? " block " : "none "
-        }">
-            <button data-role="assessment" class="btn btn-success btn-lg" id="expertHelp"> Expert Help</button>
+        }"> ${
+    participant.tasks[participant.current.task - 1][
+      `subtask${participant.current.subtask}`
+    ].typeExpertHelp === "controlled"
+      ? ``
+      : `<button data-role="assessment" class="btn btn-success btn-lg" id="expertHelpButton"> Expert Help</button>`
+  }
         </div>
     </div>
     <br>
     <br>
     <br>
-    <div id="expertHypotheses"></div>
+    <div id="expertHelpSection"></div>
     <br>
     <div style="width: 500px; margin:auto;">
         <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
@@ -508,6 +500,35 @@ export const getExpertHypotheses = task =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
             <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
+                <b>I approve this!</b>
+            </label>
+        </div>
+    </div>
+</p>
+  `
+    )
+    .join("");
+
+export const getBuggyLines = task =>
+  [1, 2, 3]
+    .map(
+      index => html`
+<h5 class="card-title">Buggy Line # ${index} </h5>
+<p class="card-text">
+    <div class="border-bottom border-dark ">
+        <div class="form-group">
+            <label for="buggyLine${index}">buggy Line</label>
+            <textarea class="form-control" id="buggyLine${index}" rows="3"disabled>${
+        task["buggyLine" + index]
+      }</textarea>
+        </div>
+        <div class="form-group">
+            <label for="buggyLineWhy${index}">If this bug line is not relevant, please indicate why? </label>
+            <textarea class="form-control" id="buggyLineWhy${index}" rows="3"></textarea>
+        </div>
+        <div class="custom-control custom-checkbox d-flex justify-content-start">
+            <input type="checkbox" class="custom-control-input " id="buggyLineApprove${index}">
+            <label class="custom-control-label text-success" for="buggyLineApprove${index}">
                 <b>I approve this!</b>
             </label>
         </div>

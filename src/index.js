@@ -48,12 +48,12 @@ const renderPage = page => {
         `subtask${participant.current.subtask}`
       ].subtaskStartTime = getTime();
 
-      ui.attachEvent(ui.getElement("expertHelp"), "click", () => {
+      ui.attachEvent(ui.getElement("expertHelpButton"), "click", () => {
         const content = utils.getExpertHypotheses(
           experiment.tasks[`task${participant.current.task}`]
         );
 
-        ui.getElement("expertHypotheses").innerHTML = content;
+        ui.getElement("expertHelpSection").innerHTML = content;
         participant.tasks[participant.current.task - 1].expertHelp = true;
         participant.tasks[participant.current.task - 1][
           `subtask${participant.current.subtask}`
@@ -79,28 +79,57 @@ const renderPage = page => {
           el.status = status !== null ? status.checked : false;
         });
         if (participant.tasks[participant.current.task - 1].expertHelp) {
-          const Expert =
+          const expert =
             participant.tasks[participant.current.task - 1][
               `subtask${participant.current.subtask}`
             ];
-          Expert.ExpertHypotheses = [1, 2, 3].map(
-            i =>
-              ui.getElement("expertWhy" + i).value == "" //validate the why is entered
-                ? "missingExpertWhy"
-                : {
-                    // @ts-ignore
-                    hypothesis: ui.getElement("expertHypothesis" + i).value,
-                    // @ts-ignore
-                    evidence: ui.getElement("expertEvidence" + i).value,
-                    status: ui.getElement(
-                      "expertHypothesisApprove" + i
+          if (
+            participant.tasks[participant.current.task - 1].typeExpertHelp ==
+            "expertHypotheses"
+          ) {
+            expert.ExpertHypotheses = [1, 2, 3].map(
+              i =>
+                ui.getElement("expertWhy" + i).value == "" //validate the why is entered
+                  ? "missingExpertWhy"
+                  : {
                       // @ts-ignore
-                    ).checked,
-                    // @ts-ignore
-                    why: ui.getElement("expertWhy" + i).value
-                  }
-          );
-          if (Expert.ExpertHypotheses.includes("missingExpertWhy")) {
+                      hypothesis: ui.getElement("expertHypothesis" + i).value,
+                      // @ts-ignore
+                      evidence: ui.getElement("expertEvidence" + i).value,
+                      status: ui.getElement(
+                        "expertHypothesisApprove" + i
+                        // @ts-ignore
+                      ).checked,
+                      // @ts-ignore
+                      why: ui.getElement("expertWhy" + i).value
+                    }
+            );
+          }
+          if (
+            participant.tasks[participant.current.task - 1].typeExpertHelp ==
+            "buggyLines"
+          ) {
+            expert.buggyLines = [1, 2, 3].map(
+              i =>
+                ui.getElement("buggyLineWhy" + i).value == "" //validate the why is entered
+                  ? "buggyLineWhy"
+                  : {
+                      // @ts-ignore
+                      line: ui.getElement("buggyLine" + i).value,
+                      // @ts-ignore
+                      status: ui.getElement(
+                        "buggyLineApprove" + i
+                        // @ts-ignore
+                      ).checked,
+                      // @ts-ignore
+                      why: ui.getElement("buggyLineWhy" + i).value
+                    }
+            );
+          }
+          if (
+            expert.ExpertHypotheses.includes("missingExpertWhy") ||
+            expert.buggyLines.includes("buggyLineWhy")
+          ) {
             alert("You need to write down you justification of why");
             return;
           }
@@ -158,7 +187,7 @@ const renderPage = page => {
       });
       break;
     case "end":
-      ui.render("contents", "<h1>Thanks</h1>");
+      ui.render("contents", "<h1>Survey Questions</h1>");
       break;
   }
 };
@@ -190,6 +219,16 @@ db.init().then(payload => {
     participant.expertise = payload.val().expertise;
     console.log(participant);
     renderPage("task");
+  } else {
+    db.getTaskAssignment().then(payload => {
+      const array = payload.val();
+      participant.tasks[array[0]].typeExpertHelp = "controlled";
+      participant.tasks[array[1]].typeExpertHelp = "expertHypotheses";
+      participant.tasks[array[2]].typeExpertHelp = "buggyLines";
+      array.push(array.shift());
+      db.setTaskAssignment(array);
+      console.log(participant);
+    });
   }
 });
 

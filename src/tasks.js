@@ -1,9 +1,9 @@
 export const experiment = {
   assessment: {
-    numberAssessmentQuestions: 8,
+    numberAssessmentQuestions: 9,
     Q1: {
       text: `What is the output of the code below:`,
-      code: `const t = 10;\nconsole.log(x); // x is not initialized`,
+      code: `const x = 10;\n console.log(y);`,
       answers: [
         "Null",
         "initialization error",
@@ -12,35 +12,19 @@ export const experiment = {
         "I do not know!"
       ]
     },
-
     Q2: {
-      text: `What is the output of the code below:`,
-      code: `const a = [5,10,10,10];\nconst result = a.reduce((a,b)=> a+b, 1);\nconsole.log(result);`,
-      answers: ["Null", "35", "36", "39", "I do not know"]
+      text: `How to subscribe to a click event for HTML button using the DOM API:`,
+      code: ``,
+      answers: [
+        "button.onclick(callback)",
+        "button.event().click(callback)",
+        "button.addEventListener('click', callback)",
+        "button.click(callback)",
+        "I do not know"
+      ]
     },
+
     Q3: {
-      text: `In React, what is the recommended component life cycle hock to implement http request  :`,
-      code: "",
-      answers: [
-        "ComponentWillAttach",
-        "ReactNotBusy",
-        "ComponentDidMount",
-        "ComponentIsReady",
-        "I do not know!"
-      ]
-    },
-    Q4: {
-      text: `In React, the setState function is`,
-      code: "",
-      answers: [
-        "synchronous",
-        "asynchronous",
-        "prototype function",
-        "only supported for mobile",
-        "I do not know!"
-      ]
-    },
-    Q5: {
       text: `There are many ways to handle asynchronous programming in javaScript. Which one is not one of these ways?:`,
       code: "",
       answers: [
@@ -52,7 +36,41 @@ export const experiment = {
       ]
     },
 
+    Q4: {
+      text: `In React, what is the recommended component life cycle hock to implement http request inside:`,
+      code: "",
+      answers: [
+        "ComponentWillAttach",
+        "ReactNotBusy",
+        "ComponentDidMount",
+        "ComponentIsReady",
+        "I do not know!"
+      ]
+    },
+    Q5: {
+      text: `In React, the setState function is`,
+      code: "",
+      answers: [
+        "synchronous",
+        "asynchronous",
+        "prototype function",
+        "only supported for mobile",
+        "I do not know!"
+      ]
+    },
     Q6: {
+      text: `In React, setting the state triggers which function?`,
+      code: "",
+      answers: [
+        "update()",
+        "new()",
+        "render()",
+        "constructor()",
+        "I do not know!"
+      ]
+    },
+
+    Q7: {
       text: `D3.js is`,
       code: "",
       answers: [
@@ -64,8 +82,8 @@ export const experiment = {
       ]
     },
 
-    Q7: {
-      text: `To add a node element to the DOM using D3, you need to you which D3 API`,
+    Q8: {
+      text: `To add a node element to the DOM using D3, you need to use you which D3 API`,
       code: "",
       answers: [
         "attach()",
@@ -75,7 +93,7 @@ export const experiment = {
         "I do not know!"
       ]
     },
-    Q8: {
+    Q9: {
       text: `The D3 API equivalent to document.getElementById('id')`,
       code: "",
       answers: [
@@ -88,13 +106,13 @@ export const experiment = {
     }
   },
   tasks: {
-    numberTasks: 4,
+    numberTasks: 3,
     numberSubTasks: 3,
     // task1: {
     //   description: `
     //   <h3>Function returning undefined after calling in string</h3>
     //   I'm trying to make a shopping cart using JS and one of my tasks is to create a placeOrder function.
-    //   <ul><li>The placeOrder() function accepts one argument, a credit card number.</li> 
+    //   <ul><li>The placeOrder() function accepts one argument, a credit card number.</li>
     //   <li>If no argument is received, the function should print out Sorry, we don't have a credit card on file for you.</li>
     //   <li>If a card number is received, the function should print out Your total cost is $71, which will be charged to the card 83296759. Then, it should empty the cart array.</li>
     //   </ul>
@@ -134,9 +152,9 @@ export const experiment = {
       expertHypothesis3: "You are subscribing to the wrong event.",
       evidence3:
         "make sure you spell the event name correctly. Also, check you have used the addEventListener API correctly.",
-        buggyLine1: 2,
-        BuggyLine2:5,
-        BuggyLine:3
+      buggyLine1: 2,
+      BuggyLine2: 5,
+      BuggyLine: 3
     },
     task2: {
       description: `
@@ -155,9 +173,9 @@ export const experiment = {
       expertHypothesis3: "you are not using setState properly",
       evidence3:
         "setState is an asynchronous function. If you try to access the state immediately after changing it, check that you doing it through a callback. For example, this.setState(newState, callback)",
-        buggyLine1:42,
-        BuggyLine2:65,
-        BuggyLine:38
+      buggyLine1: 42,
+      BuggyLine2: 65,
+      BuggyLine: 38
     },
     task3: {
       description: `<h3>d3.js Histogram does not show columns</h3>
@@ -165,9 +183,10 @@ export const experiment = {
       binURL1: "https://Alaboudi1.jsbin.com/vinuram/12/edit?output",
       binURL2: "https://Alaboudi1.jsbin.com/vinuram/13/edit?js",
       binURL3: "https://Alaboudi1.jsbin.com/vinuram/14/edit?js,console,output",
-      expertHypothesis1: "You are selecting the data associated with the column wrongly",
+      expertHypothesis1:
+        "You are selecting the data associated with the column wrongly",
       evidence1:
-        "Check if you are actually correctly taking the values from your dataset and assign them to the corresponding ",
+        "Check if you are actually correctly taking the values from your dataset and assign them to the corresponding variable i.e. the x, y, and z axises",
       expertHypothesis2:
         "You have a problem in the way you map the data to width or hight",
       evidence2:
@@ -175,9 +194,9 @@ export const experiment = {
       expertHypothesis3: "Your data is not correctly formated",
       evidence3:
         "Check if your are data is correct and has no formating problem",
-        buggyLine1:2,
-        BuggyLine2:46,
-        BuggyLine:11
+      buggyLine1: 2,
+      BuggyLine2: 46,
+      BuggyLine: 11
     }
   }
 };

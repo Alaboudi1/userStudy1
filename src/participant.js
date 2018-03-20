@@ -37,12 +37,17 @@ export const participant = {
 
     Q7StartTime: "",
     Q8: "",
-    Q8EndTime: ""
+    Q8EndTime: "",
+
+    Q9StartTime: "",
+    Q9: "",
+    Q9EndTime: ""
   },
   tasks: [
     {
       id: "1",
       expertHelp: false,
+      typeExpertHelp: "",
       subtask1: {
         subtaskStartTime: "",
         subtaskEndTime: "",
@@ -83,12 +88,20 @@ export const participant = {
             status: false,
             why: ""
           }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          }
         ]
       }
     },
     {
       id: "2",
       expertHelp: false,
+      typeExpertHelp: "",
       subtask1: {
         subtaskStartTime: "",
         subtaskEndTime: "",
@@ -135,6 +148,7 @@ export const participant = {
     {
       id: "3",
       expertHelp: false,
+      typeExpertHelp: "",
       subtask1: {
         subtaskStartTime: "",
         subtaskEndTime: "",
@@ -143,6 +157,13 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             triggers: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
           }
         ]
       },
@@ -172,6 +193,13 @@ export const participant = {
         ExpertHypotheses: [
           {
             hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
             status: false,
             why: ""
           }

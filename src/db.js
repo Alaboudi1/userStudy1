@@ -15,3 +15,9 @@ export const init = () => {
 export const save = participant => {
     database.ref(`test/participants/${uid}`).set(participant);
 }
+export const getTaskAssignment = () => {
+    return database.ref(`test/random`).once('value')
+}
+export const setTaskAssignment = (random) => {
+    return database.ref(`test/random`).set(random);
+}
