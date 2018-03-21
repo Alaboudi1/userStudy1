@@ -153,8 +153,8 @@ export const experiment = {
       evidence3:
         "make sure you spell the event name correctly. Also, check you have used the addEventListener API correctly.",
       buggyLine1: 2,
-      BuggyLine2: 5,
-      BuggyLine: 3
+      buggyLine2: 5,
+      buggyLine3: 3
     },
     task2: {
       description: `
@@ -174,8 +174,8 @@ export const experiment = {
       evidence3:
         "setState is an asynchronous function. If you try to access the state immediately after changing it, check that you doing it through a callback. For example, this.setState(newState, callback)",
       buggyLine1: 42,
-      BuggyLine2: 65,
-      BuggyLine: 38
+      buggyLine2: 65,
+      buggyLine3: 38
     },
     task3: {
       description: `<h3>d3.js Histogram does not show columns</h3>
@@ -195,8 +195,8 @@ export const experiment = {
       evidence3:
         "Check if your are data is correct and has no formating problem",
       buggyLine1: 2,
-      BuggyLine2: 46,
-      BuggyLine: 11
+      buggyLine2: 46,
+      buggyLine3: 11
     }
   }
 };

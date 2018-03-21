@@ -295,18 +295,14 @@ export const assessment = (assessment, participant) => {
         </h1>
         <p class="lead">
             <div class="text-justify"> ${question.text}</div>
-            <pre><code class=" javascript keyword text-success">${
-              question.code
-            }</code></pre>
+            <pre><code class=" javascript keyword text-success">${question.code}</code></pre>
             <br>
             <div class="custom-control custom-radio custom-control-inline">
                 <input type="radio" id="answer1" name="assessment" value= ${question.answers[0].replace(
                   /\s/g,
                   "_"
                 )} class="custom-control-input">
-                <label for="answer1" class="custom-control-label">${
-                  question.answers[0]
-                }
+                <label for="answer1" class="custom-control-label">${question.answers[0]}
                 </label>
             </div>
             <div class="custom-control custom-radio custom-control-inline">
@@ -314,9 +310,7 @@ export const assessment = (assessment, participant) => {
                   /\s/g,
                   "_"
                 )} class="custom-control-input">
-                <label for="answer2" class="custom-control-label">${
-                  question.answers[1]
-                }
+                <label for="answer2" class="custom-control-label">${question.answers[1]}
                 </label>
             </div>
 
@@ -325,9 +319,7 @@ export const assessment = (assessment, participant) => {
                   /\s/g,
                   "_"
                 )} class="custom-control-input">
-                <label for="answer3" class="custom-control-label">${
-                  question.answers[2]
-                }
+                <label for="answer3" class="custom-control-label">${question.answers[2]}
                 </label>
             </div>
 
@@ -336,9 +328,7 @@ export const assessment = (assessment, participant) => {
                   /\s/g,
                   "_"
                 )} class="custom-control-input">
-                <label for="answer4" class="custom-control-label">${
-                  question.answers[3]
-                }
+                <label for="answer4" class="custom-control-label">${question.answers[3]}
                 </label>
             </div>
 
@@ -347,9 +337,7 @@ export const assessment = (assessment, participant) => {
                   /\s/g,
                   "_"
                 )} class="custom-control-input">
-                <label for="answer5" class="custom-control-label">${
-                  question.answers[4]
-                }
+                <label for="answer5" class="custom-control-label">${question.answers[4]}
                 </label>
             </div>
             <br>
@@ -370,9 +358,9 @@ export const assessment = (assessment, participant) => {
 export const task = (tasks, participant) => {
   const task = tasks["task" + participant.current.task];
   const hypotheses =
-    participant.tasks[participant.current.task - 1][
-      `subtask${participant.current.subtask}`
-    ]["hypotheses"];
+    participant.tasks[participant.current.task - 1][`subtask${participant.current.subtask}`][
+      "hypotheses"
+    ];
   const taskHTML = html`
 <div class="jumbotron jumbotron-fluid" style="padding:10px">
     <h1 class="display-4">Task # ${participant.current.task}</h1>
@@ -395,11 +383,7 @@ export const task = (tasks, participant) => {
         </div>
         <div id="hypotheses" class="card-body">
             ${hypotheses.map((hypothesis, index) =>
-              getHypothesisForum(
-                index + 1,
-                participant.current.subtask,
-                hypothesis
-              )
+              getHypothesisForum(index + 1, participant.current.subtask, hypothesis)
             )}
         </div>
         <div style="width: 300px; margin:auto;">
@@ -407,15 +391,14 @@ export const task = (tasks, participant) => {
         </div>
         <br>
         <br>
-        <div style="width: 200px; margin:auto; display:${
-          participant.current.subtask == 3 ? " block " : "none "
-        }"> ${
-    participant.tasks[participant.current.task - 1][
-      `subtask${participant.current.subtask}`
-    ].typeExpertHelp === "controlled"
-      ? ``
-      : `<button data-role="assessment" class="btn btn-success btn-lg" id="expertHelpButton"> Expert Help</button>`
-  }
+        <div style='width: 200px; margin:auto; display: ${
+          participant.current.subtask == 3 &&
+          participant.tasks[participant.current.task - 1].typeExpertHelp !== `controlled`
+            ? `block`
+            : `none`
+        }'>     
+       <button data-role="assessment" class="btn btn-success btn-lg" id="expertHelpButton"> Expert Help</button>
+  
         </div>
     </div>
     <br>

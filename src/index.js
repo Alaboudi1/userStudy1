@@ -13,18 +13,13 @@ const renderPage = page => {
   let content;
   switch (page) {
     case "assessment":
-      if (
-        experiment.assessment.numberAssessmentQuestions <
-        participant.current.question
-      ) {
+      if (experiment.assessment.numberAssessmentQuestions < participant.current.question) {
         ui.getElement("assessments").classList.remove("active", "text-primary");
         ui.getElement("task1").classList.add("active", "text-primary");
         db.save(participant);
         return renderPage("task");
       }
-      participant.expertise[
-        `Q${participant.current.question}StartTime`
-      ] = getTime();
+      participant.expertise[`Q${participant.current.question}StartTime`] = getTime();
       content = utils.assessment(experiment.assessment, participant);
       ui.render("contents", content);
       ui.attachEvent(ui.getElement("button"), "click", () => {
@@ -34,9 +29,7 @@ const renderPage = page => {
           // @ts-ignore
         ).value;
         participant.expertise[`Q${participant.current.question}`] = answer;
-        participant.expertise[
-          `Q${participant.current.question}EndTime`
-        ] = getTime();
+        participant.expertise[`Q${participant.current.question}EndTime`] = getTime();
         participant.current.question++;
         renderPage("assessment");
       });
@@ -49,15 +42,17 @@ const renderPage = page => {
       ].subtaskStartTime = getTime();
 
       ui.attachEvent(ui.getElement("expertHelpButton"), "click", () => {
-        const content = utils.getExpertHypotheses(
-          experiment.tasks[`task${participant.current.task}`]
-        );
-
+        let content;
+        if (participant.tasks[participant.current.task - 1].typeExpertHelp == "expertHypotheses") {
+          content = utils.getExpertHypotheses(experiment.tasks[`task${participant.current.task}`]);
+        } else {
+          content = utils.getBuggyLines(experiment.tasks[`task${participant.current.task}`]);
+        }
         ui.getElement("expertHelpSection").innerHTML = content;
         participant.tasks[participant.current.task - 1].expertHelp = true;
-        participant.tasks[participant.current.task - 1][
-          `subtask${participant.current.subtask}`
-        ]["expertHelp"] = getTime();
+        participant.tasks[participant.current.task - 1][`subtask${participant.current.subtask}`][
+          "expertHelp"
+        ] = getTime();
       });
       ui.attachEvent(ui.getElement("button"), "click", () => {
         const hypotheses = getHypotheses();
@@ -84,8 +79,7 @@ const renderPage = page => {
               `subtask${participant.current.subtask}`
             ];
           if (
-            participant.tasks[participant.current.task - 1].typeExpertHelp ==
-            "expertHypotheses"
+            participant.tasks[participant.current.task - 1].typeExpertHelp == "expertHypotheses"
           ) {
             expert.ExpertHypotheses = [1, 2, 3].map(
               i =>
@@ -105,10 +99,7 @@ const renderPage = page => {
                     }
             );
           }
-          if (
-            participant.tasks[participant.current.task - 1].typeExpertHelp ==
-            "buggyLines"
-          ) {
+          if (participant.tasks[participant.current.task - 1].typeExpertHelp == "buggyLines") {
             expert.buggyLines = [1, 2, 3].map(
               i =>
                 ui.getElement("buggyLineWhy" + i).value == "" //validate the why is entered
@@ -136,9 +127,7 @@ const renderPage = page => {
         } else if (participant.current.subtask == 3) {
           const approve = hypotheses.filter(h => h.status);
           if (approve.length == 0) {
-            alert(
-              "You need to approve at least one of your hypotheses or ask for expert help"
-            );
+            alert("You need to approve at least one of your hypotheses or ask for expert help");
             return;
           }
         }
@@ -157,9 +146,7 @@ const renderPage = page => {
         if (participant.current.task > experiment.tasks.numberTasks) {
           renderPage("end");
         } else {
-          ui
-            .getElement(`task${participant.current.task}`)
-            .classList.add("active", "text-primary");
+          ui.getElement(`task${participant.current.task}`).classList.add("active", "text-primary");
           renderPage("task");
         }
       });
@@ -179,10 +166,7 @@ const renderPage = page => {
           status: false
         });
         const div = document.createElement("div");
-        div.innerHTML += utils.getHypothesisForum(
-          hypotheses.length,
-          participant.current.subtask
-        );
+        div.innerHTML += utils.getHypothesisForum(hypotheses.length, participant.current.subtask);
         ui.getElement("hypotheses").appendChild(div);
       });
       break;
@@ -192,14 +176,14 @@ const renderPage = page => {
   }
 };
 const getHypotheses = () =>
-  participant.tasks[participant.current.task - 1][
-    `subtask${participant.current.subtask}`
-  ]["hypotheses"];
+  participant.tasks[participant.current.task - 1][`subtask${participant.current.subtask}`][
+    "hypotheses"
+  ];
 
 const setHypotheses = hypotheses =>
-  (participant.tasks[participant.current.task - 1][
-    `subtask${participant.current.subtask}`
-  ]["hypotheses"] = hypotheses);
+  (participant.tasks[participant.current.task - 1][`subtask${participant.current.subtask}`][
+    "hypotheses"
+  ] = hypotheses);
 
 ui.render("contents", utils.welcome());
 ui.attachEvent(ui.getElement("button"), "click", () => {
