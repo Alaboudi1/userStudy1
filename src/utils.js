@@ -358,7 +358,7 @@ export const assessment = (assessment, participant) => {
 export const task = (tasks, participant) => {
   const task = tasks["task" + participant.current.task];
   const hypotheses =
-    participant.tasks[participant.current.task - 1][`subtask${participant.current.subtask}`][
+    participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`][
       "hypotheses"
     ];
   const taskHTML = html`
@@ -393,7 +393,7 @@ export const task = (tasks, participant) => {
         <br>
         <div style='width: 200px; margin:auto; display: ${
           participant.current.subtask == 3 &&
-          participant.tasks[participant.current.task - 1].typeExpertHelp !== `controlled`
+          participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled`
             ? `block`
             : `none`
         }'>     

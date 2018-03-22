@@ -7,6 +7,7 @@ export const participant = {
     startTime: ""
   },
   expertise: {
+    timeUp: false,
     Q1StartTime: "",
     Q1: "",
     Q1EndTime: "",
@@ -43,12 +44,13 @@ export const participant = {
     Q9: "",
     Q9EndTime: ""
   },
-  tasks: [
-    {
+  tasks: {
+    task1: {
       id: "1",
       expertHelp: false,
       typeExpertHelp: "",
       subtask1: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -60,6 +62,7 @@ export const participant = {
         ]
       },
       subtask2: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -72,6 +75,7 @@ export const participant = {
         ]
       },
       subtask3: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -98,11 +102,12 @@ export const participant = {
         ]
       }
     },
-    {
+    task2: {
       id: "2",
       expertHelp: false,
       typeExpertHelp: "",
       subtask1: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -114,6 +119,7 @@ export const participant = {
         ]
       },
       subtask2: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -126,6 +132,7 @@ export const participant = {
         ]
       },
       subtask3: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -145,11 +152,12 @@ export const participant = {
         ]
       }
     },
-    {
+    task3: {
       id: "3",
       expertHelp: false,
       typeExpertHelp: "",
       subtask1: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -168,6 +176,7 @@ export const participant = {
         ]
       },
       subtask2: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -180,6 +189,7 @@ export const participant = {
         ]
       },
       subtask3: {
+        timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
         hypotheses: [
@@ -206,5 +216,5 @@ export const participant = {
         ]
       }
     }
-  ]
+  }
 };
