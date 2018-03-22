@@ -32,8 +32,8 @@ ui.attachEvent(ui.getElement("button"), "click", () => {
   renderPage("assessment");
   ui.getElement("welcome").classList.remove("active", "text-primary");
   ui.getElement("assessments").classList.add("active", "text-primary");
-  setTimerReminder(30000, "You only have 1 minute remaining!"); // 9 min
-  setTimerForce(40000, "You reached the time limit!", "assessment"); // 10 min
+  setTimerReminder(540000, "You only have 1 minute remaining!"); // 9 min
+  setTimerForce(600000, "You reached the time limit!", "assessment"); // 10 min
 });
 
 const getTime = () => new Date().toLocaleTimeString();
@@ -74,7 +74,7 @@ const setTimerForce = (time, message, page) => {
       db.save(participant);
       renderPage("task");
     } else if (page === "task") {
-      participant.tasks[`task${participant.current.task}`].timeUp = true;
+      participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`].timeUp = true;
       saveSubtask();
     }
   }, time);
@@ -96,9 +96,8 @@ const saveAnswer = () => {
   participant.expertise[`Q${participant.current.question}`] = answer;
   participant.expertise[`Q${participant.current.question}EndTime`] = getTime();
 
-    participant.current.question++;
-    renderPage("assessment");
-  
+  participant.current.question++;
+  renderPage("assessment");
 };
 const assessments = () => {
   let content;
@@ -121,13 +120,13 @@ const tasks = () => {
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
   if (participant.subtask === 3) {
-    timeF = 60000; //96 * 10000;
-    timeR = 40000; //60 * 10000;
+    timeF = 960000;
+    timeR = 660000;
   } else {
-    timeF = 60000; //42 * 10000;
-    timeR = 40000; //30 * 10000;
+    timeF = 420000;
+    timeR = 300000;
   }
-  setTimerReminder(timeR, `You only have ${(timeF - timeR) / 10000} minute remaining!`);
+  setTimerReminder(timeR, `You only have ${(timeF - timeR) / 60000} minute remaining!`);
   setTimerForce(timeF, "You reached the time limit!", "task");
   content = utils.task(experiment.tasks, participant);
   ui.render("contents", content);
@@ -205,14 +204,14 @@ const saveSubtask = () => {
     if (
       (expert.ExpertHypotheses.includes("missingExpertWhy") ||
         expert.buggyLines.includes("buggyLineWhy")) &&
-      !participant.tasks[`task${participant.current.task}`].timeUp
+      !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`].timeUp
     ) {
       alert("You need to write down you justification of why");
       return;
     }
   } else if (
     participant.current.subtask == 3 &&
-    !participant.tasks[`task${participant.current.task}`].timeUp
+    !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`].timeUp
   ) {
     const approve = hypotheses.filter(h => h.status);
     if (approve.length == 0) {

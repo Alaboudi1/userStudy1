@@ -4,13 +4,7 @@ export const experiment = {
     Q1: {
       text: `What is the output of the code below:`,
       code: `const x = 10;\n console.log(y);`,
-      answers: [
-        "Null",
-        "initialization error",
-        "undefined",
-        "an empty string",
-        "I do not know!"
-      ]
+      answers: ["Null", "initialization error", "undefined", "an empty string", "I do not know!"]
     },
     Q2: {
       text: `How to subscribe to a click event for HTML button using the DOM API:`,
@@ -27,13 +21,7 @@ export const experiment = {
     Q3: {
       text: `There are many ways to handle asynchronous programming in javaScript. Which one is not one of these ways?:`,
       code: "",
-      answers: [
-        "Promise",
-        "callback",
-        "async/await",
-        "thread",
-        "I do not know!"
-      ]
+      answers: ["Promise", "callback", "async/await", "thread", "I do not know!"]
     },
 
     Q4: {
@@ -61,13 +49,7 @@ export const experiment = {
     Q6: {
       text: `In React, setting the state triggers which function?`,
       code: "",
-      answers: [
-        "update()",
-        "new()",
-        "render()",
-        "constructor()",
-        "I do not know!"
-      ]
+      answers: ["update()", "new()", "render()", "constructor()", "I do not know!"]
     },
 
     Q7: {
@@ -85,13 +67,7 @@ export const experiment = {
     Q8: {
       text: `To add a node element to the DOM using D3, you need to use you which D3 API`,
       code: "",
-      answers: [
-        "attach()",
-        "appendChild()",
-        "attachChild()",
-        "append()",
-        "I do not know!"
-      ]
+      answers: ["attach()", "appendChild()", "attachChild()", "append()", "I do not know!"]
     },
     Q9: {
       text: `The D3 API equivalent to document.getElementById('id')`,
@@ -145,13 +121,12 @@ export const experiment = {
       expertHypothesis1: "Not using the correct CSS property.",
       evidence1:
         "Check if you are using the correct CSS property to change the visibility of an element. Example: visibility: 'visible' or 'hidden', or  display: 'none' or 'block'",
-      expertHypothesis2:
-        "You are using the wrong DOM API or not using it correctly.",
+      expertHypothesis2: "You are using the wrong DOM API or not using it correctly.",
       evidence2:
         "Check of you using the correct DOM API. Also remember: document.getElementById returns an HTML element that has the same id, document.getElementsByClassName returns a HTMLCollection that you have to iterate over.",
       expertHypothesis3: "You are subscribing to the wrong event.",
       evidence3:
-        "make sure you spell the event name correctly. Also, check you have used the addEventListener API correctly.",
+        "make sure you spell the event name correctly(e.g. 'click' and not 'onclick'). Also, check you have used the addEventListener API correctly (e.g. element.addEventListener(event,callback))",
       buggyLine1: 2,
       buggyLine2: 5,
       buggyLine3: 3
@@ -170,9 +145,9 @@ export const experiment = {
         "You are trying to access an object that is still being downloaded from the server.",
       evidence2:
         "Check that you are only accessing the object after making sure that it is available. For example, check if you have a condition that assure whether the object you are trying to access is not undefined",
-      expertHypothesis3: "you are not using setState properly",
+      expertHypothesis3: "you are not using setState properly.",
       evidence3:
-        "setState is an asynchronous function. If you try to access the state immediately after changing it, check that you doing it through a callback. For example, this.setState(newState, callback)",
+        "setState is an asynchronous function. If you try to access the state immediately after changing it, check that you are doing it through a callback. For example, this.setState(newState, callback)",
       buggyLine1: 42,
       buggyLine2: 65,
       buggyLine3: 38
@@ -183,17 +158,13 @@ export const experiment = {
       binURL1: "https://Alaboudi1.jsbin.com/vinuram/12/edit?output",
       binURL2: "https://Alaboudi1.jsbin.com/vinuram/13/edit?js",
       binURL3: "https://Alaboudi1.jsbin.com/vinuram/14/edit?js,console,output",
-      expertHypothesis1:
-        "You are selecting the data associated with the column wrongly",
+      expertHypothesis1: "You are selecting the data associated with the column wrongly.",
       evidence1:
-        "Check if you are actually correctly taking the values from your dataset and assign them to the corresponding variable i.e. the x, y, and z axises",
-      expertHypothesis2:
-        "You have a problem in the way you map the data to width or hight",
-      evidence2:
-        "check the method that set the width and see if the calculation is correct ",
-      expertHypothesis3: "Your data is not correctly formated",
-      evidence3:
-        "Check if your are data is correct and has no formating problem",
+        "Check if you are correctly taking the values from your dataset and assign them to the corresponding variable i.e. the x, y, and z axises.",
+      expertHypothesis2: "You have a problem in the way you map the data to width or height.",
+      evidence2: "check the method that set the width and the height and see if the calculations are correct.",
+      expertHypothesis3: "Your data is not correctly formated.",
+      evidence3: "Check if your are data is correct and has no formating problems.",
       buggyLine1: 2,
       buggyLine2: 46,
       buggyLine3: 11
