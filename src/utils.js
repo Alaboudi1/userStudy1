@@ -48,10 +48,6 @@ export const welcome = () => html`
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
-            <!-- <div class="form-group">
-                            <label for="triggers">triggers</label>
-                            <textarea class="form-control" id="triggers2" rows="3" disabled>image either doesn't show up,shows a broken image, browser, html. </textarea>
-                        </div> -->
             <div class="form-group">
                 <label for="evidence">evidence</label>
                 <textarea class="form-control" id="evidence3" rows="7" disabled>
@@ -72,10 +68,6 @@ Relative path:
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
             </div>
-            <!-- <div class="form-group">
-                            <label for="triggers">triggers</label>
-                            <textarea class="form-control" id="triggers2" rows="3" disabled>image either doesn't show up,shows a broken image, browser, html. </textarea>
-                        </div> -->
             <div class="form-group">
                 <label for="evidence">evidence</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
@@ -112,10 +104,6 @@ if the image has 755 permission.
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
-            <!-- <div class="form-group">
-                                <label for="triggers">triggers</label>
-                                <textarea class="form-control" id="triggers2" rows="3" disabled>image either doesn't show up,shows a broken image, browser, html. </textarea>
-                            </div> -->
             <div class="form-group">
                 <label for="evidence">evidence</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
@@ -138,10 +126,6 @@ if the image has 755 permission.
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
             </div>
-            <!-- <div class="form-group">
-                                <label for="triggers">triggers</label>
-                                <textarea class="form-control" id="triggers2" rows="3" disabled>image either doesn't show up,shows a broken image, browser, html. </textarea>
-                            </div> -->
             <div class="form-group">
                 <label for="evidence">evidence</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
@@ -182,10 +166,6 @@ if the image has 755 permission.
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
-            <!-- <div class="form-group">
-                                <label for="triggers">triggers</label>
-                                <textarea class="form-control" id="triggers2" rows="3" disabled>image either doesn't show up,shows a broken image, browser, html. </textarea>
-                            </div> -->
             <div class="form-group">
                 <label for="evidence">evidence</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>The image path is not relative path.</textarea>
@@ -206,10 +186,6 @@ if the image has 755 permission.
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
             </div>
-            <!-- <div class="form-group">
-                                <label for="triggers">triggers</label>
-                                <textarea class="form-control" id="triggers2" rows="3" disabled>image either doesn't show up,shows a broken image, browser, html. </textarea>
-                            </div> -->
             <div class="form-group">
                 <label for="evidence">evidence</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
@@ -249,11 +225,6 @@ if the image has 755 permission.
                 <label for="hypothesis">hypothesis</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
-            <!-- <div class="form-group">
-                                        <label for="evidence">evidence</label>
-                                        <textarea class="form-control" id="evidence3" rows="3" disabled>The image path is not relative path.
-                                        </textarea> -->
-            <!-- </div> -->
             <div class="form-group">
                 <label for="triggers">Why would you approve or disapprove this help?</label>
                 <textarea class="form-control" id="triggers2" rows="3" disabled>This is correct because the path is indeed not correct. </textarea>
@@ -520,3 +491,27 @@ export const getBuggyLines = task =>
   `
     )
     .join("");
+
+export const survey = () => html`
+<h2 class="card-title"> Survey Questions: </h2>
+<p class="card-text">
+        <div class="form-group">
+            <label for="buggyLineWhy">If you have used expert hypotheses, please indicate what did you like and dislike about that help? </label>
+            <textarea class="form-control" id="surveyHypotheses" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="buggyLineWhy">If you have used buggy lines help, please indicate what did you like and dislike about that help? </label>
+            <textarea class="form-control" id="surveyBuggyLines" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="buggyLineWhy">If you were not able to fix a bug in the a task, please indicate why? </label>
+            <textarea class="form-control" id="surveyBugFixes" rows="3"></textarea>
+        </div>
+    </div>
+    <br>
+    <div style="width: 500px; margin:auto;">
+        <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
+        <br>
+    </div>
+</p>
+`;

@@ -18,10 +18,8 @@ const renderPage = page => {
     case "task":
       tasks();
       break;
-    case "end":
-      clearTimeout(timerReminder);
-      clearTimeout(timerForce);
-      ui.render("contents", "<h1>Survey Questions</h1>");
+    case "survey":
+      survey();
       break;
   }
 };
@@ -74,7 +72,9 @@ const setTimerForce = (time, message, page) => {
       db.save(participant);
       renderPage("task");
     } else if (page === "task") {
-      participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`].timeUp = true;
+      participant.tasks[`task${participant.current.task}`][
+        `subtask${participant.current.subtask}`
+      ].timeUp = true;
       saveSubtask();
     }
   }, time);
@@ -119,12 +119,12 @@ const tasks = () => {
   let content, timeF, timeR;
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
-  if (participant.subtask === 3) {
-    timeF = 960000;
-    timeR = 660000;
+  if (participant.current.subtask === 3) {
+    timeF = 96000;
+    timeR = 66000;
   } else {
-    timeF = 420000;
-    timeR = 300000;
+    timeF = 42000;
+    timeR = 30000;
   }
   setTimerReminder(timeR, `You only have ${(timeF - timeR) / 60000} minute remaining!`);
   setTimerForce(timeF, "You reached the time limit!", "task");
@@ -161,7 +161,7 @@ const saveSubtask = () => {
     // @ts-ignore
     el.status = status !== null ? status.checked : false;
   });
-  if (participant.tasks[`task${participant.current.task}`].expertHelp) {
+  if (participant.tasks[`task${participant.current.task}`].expertHelp && participant.current.task === 3) {
     const expert =
       participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`];
     if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "expertHypotheses") {
@@ -204,14 +204,16 @@ const saveSubtask = () => {
     if (
       (expert.ExpertHypotheses.includes("missingExpertWhy") ||
         expert.buggyLines.includes("buggyLineWhy")) &&
-      !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`].timeUp
+      !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
+        .timeUp
     ) {
-      alert("You need to write down you justification of why");
+      alert("You need to write down you justification of why and why not each expert help was useful?");
       return;
     }
   } else if (
     participant.current.subtask == 3 &&
-    !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`].timeUp
+    !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
+      .timeUp
   ) {
     const approve = hypotheses.filter(h => h.status);
     if (approve.length == 0) {
@@ -230,7 +232,7 @@ const saveSubtask = () => {
   }
   db.save(participant);
   if (participant.current.task > experiment.tasks.numberTasks) {
-    renderPage("end");
+    renderPage("survey");
   } else {
     ui.getElement(`task${participant.current.task}`).classList.add("active", "text-primary");
     renderPage("task");
@@ -267,7 +269,20 @@ const expertHelp = () => {
   }
   ui.getElement("expertHelpSection").innerHTML = content;
   participant.tasks[`task${participant.current.task}`].expertHelp = true;
-  participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`][
-    "expertHelp"
-  ] = getTime();
+  participant.tasks[`task${participant.current.task}`].expertHelpTime = getTime();
 };
+function survey() {
+  clearTimeout(timerReminder);
+  clearTimeout(timerForce);
+  ui.render("contents", utils.survey());
+  ui.attachEvent(ui.getElement("button"), "click", () => {
+    participant.survey.expertHypotheses = ui.getElement("surveyHypotheses").value;
+    participant.survey.buggyLines = ui.getElement("surveyBuggyLines").value;
+    participant.survey.bugFixes = ui.getElement("surveyBugFixes").value;
+    participant.done = true;
+    db.save(participant);
+    alert(
+      "Thanks you for participating. Please do not close the window until you are asked to do so!"
+    );
+  });
+}
