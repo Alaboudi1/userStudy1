@@ -120,11 +120,11 @@ const tasks = () => {
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
   if (participant.current.subtask === 3) {
-    timeF = 96000;
-    timeR = 66000;
+    timeF = 960000;
+    timeR = 660000;
   } else {
-    timeF = 42000;
-    timeR = 30000;
+    timeF = 420000;
+    timeR = 300000;
   }
   setTimerReminder(timeR, `You only have ${(timeF - timeR) / 60000} minute remaining!`);
   setTimerForce(timeF, "You reached the time limit!", "task");

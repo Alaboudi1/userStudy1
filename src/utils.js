@@ -493,6 +493,7 @@ export const getBuggyLines = task =>
     .join("");
 
 export const survey = () => html`
+<div class="jumbotron">
 <h2 class="card-title"> Survey Questions: </h2>
 <p class="card-text">
         <div class="form-group">
@@ -514,4 +515,5 @@ export const survey = () => html`
         <br>
     </div>
 </p>
+</div>
 `;
