@@ -1,5 +1,14 @@
 //@ts-check
 const html = String.raw;
+// @ts-ignore
+import example from "./example.png";
+// @ts-ignore
+import task1 from "./task1.png";
+// @ts-ignore
+import task2 from "./task2.png";
+// @ts-ignore
+import task3 from "./task3.png";
+
 export const welcome = () => html`
 <div class="jumbotron">
     <h1 class="display-4">Welcome!</h1>
@@ -41,6 +50,12 @@ export const welcome = () => html`
             <iframe src="https://jsbin.com/toyuxih/6/edit?output" width="1400px" height="1300;" class="embed-responsive-item"></iframe>
         </div>
     </p>
+    <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
+        <img class="card-img-top" src=${example} alt="application state">
+        <div class="card-body">
+            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
+        </div>
+    </div>
     <h5 class="card-title">Hypothesis # 1</h5>
     <p class="card-text">
         <div class="border-bottom border-dark ">
@@ -97,6 +112,12 @@ if the image has 755 permission.
             <iframe src="https://jsbin.com/toyuxih/6/edit?html" width="1400px" height="1300;" class="embed-responsive-item"></iframe>
         </div>
     </p>
+    <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
+        <img class="card-img-top" src=${example} alt="application state">
+        <div class="card-body">
+            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
+        </div>
+    </div>
     <h5 class="card-title">Hypothesis # 1</h5>
     <p class="card-text">
         <div class="border-bottom border-dark ">
@@ -158,6 +179,12 @@ if the image has 755 permission.
             <iframe src="https://jsbin.com/toyuxih/4/edit?output,html" width="1400px" height="1300;" class="embed-responsive-item"></iframe>
         </div>
     </p>
+    <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
+        <img class="card-img-top" src=${example} alt="application state">
+        <div class="card-body">
+            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
+        </div>
+    </div>
     <h5 class="card-title">Hypothesis # 1
     </h5>
     <p class="card-text">
@@ -252,7 +279,6 @@ if the image has 755 permission.
         <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> start</button>
         <br>
     </div>
-
 `;
 
 export const assessment = (assessment, participant) => {
@@ -348,6 +374,19 @@ export const task = (tasks, participant) => {
             } class="embed-responsive-item"></iframe>
         </div>
     </p>
+    <div class="card" style="margin: auto; width: 25rem;">
+        ${participant.current.task == 1 ?
+        `<img class="card-img-top" src=${task1} alt="application state">`
+        : participant.current.task == 2 ?
+        `<img class="card-img-top" src=${task2} alt="application state">`
+        :
+        `<img class="card-img-top" src=${task3} alt="application state">`
+        }
+        <div class="card-body">
+            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
+        </div>
+    </div>
+    <br>
     <div class="card text-center">
         <div class="card-header">
             Hypotheses and Triggers
@@ -369,19 +408,18 @@ export const task = (tasks, participant) => {
             : `none`
         }'>     
        <button data-role="assessment" class="btn btn-success btn-lg" id="expertHelpButton"> Expert Help</button>
-  
         </div>
-    </div>
-    <br>
-    <br>
-    <br>
+      <br>
     <div id="expertHelpSection"></div>
     <br>
-    <div style="width: 500px; margin:auto;">
-        <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
-        <br>
     </div>
+    <br>
+
+<div style="width: 500px; margin:auto;">
+        <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
 </div>
+<br>
+
 `;
 
   return taskHTML;
@@ -403,10 +441,6 @@ export const getHypothesisForum = (
             <label for="hypothesis">hypothesis</label>
             <textarea class="form-control" id="hypothesis${index}" rows="3">${hypothesis}</textarea>
         </div>
-        <!-- <div class="form-group">
-                <label for="triggers">triggers</label>
-                <textarea class="form-control" id="triggers${index}" rows="3"></textarea>
-        </div> -->
         <div class="form-group">
             <label for="evidence">evidence</label>
             <textarea class="form-control" id="evidence${index}" rows="3">${evidence}</textarea>
@@ -505,7 +539,7 @@ export const survey = () => html`
             <textarea class="form-control" id="surveyBuggyLines" rows="3"></textarea>
         </div>
         <div class="form-group">
-            <label for="buggyLineWhy">If you were not able to fix a bug in the a task, please indicate why? </label>
+            <label for="buggyLineWhy">If you were not able to fix a bug in any task, please indicate why? </label>
             <textarea class="form-control" id="surveyBugFixes" rows="3"></textarea>
         </div>
     </div>

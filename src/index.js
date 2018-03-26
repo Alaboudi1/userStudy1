@@ -44,9 +44,14 @@ db.init().then(payload => {
     participant.current = payload.val().current;
     participant.expertise = payload.val().expertise;
     console.log(participant);
-    renderPage("task");
+    if (participant.current.task == 4) {
+      renderPage("survey");
+    } else {
+      renderPage("task");
+    }
   } else {
     db.getTaskAssignment().then(payload => {
+      console.log(payload);
       const array = payload.val();
       participant.tasks[`task${array[0]}`].typeExpertHelp = "controlled";
       participant.tasks[`task${array[1]}`].typeExpertHelp = "expertHypotheses";
@@ -83,6 +88,9 @@ const setTimerForce = (time, message, page) => {
 const setTimerReminder = (time, message) => {
   timerReminder = setTimeout(() => {
     alert(message);
+    if(participant.current.subtask ===3 && participant.tasks[`task${participant.current.task}`].typeExpertHelp != "controlled")
+    ui.getElement("expertHelpButton").focus();
+
   }, time);
 };
 participant.current.startTime = getTime();
@@ -116,17 +124,19 @@ const assessments = () => {
 };
 
 const tasks = () => {
-  let content, timeF, timeR;
+  let content, timeF, timeR,message;
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
   if (participant.current.subtask === 3) {
     timeF = 960000;
     timeR = 660000;
+    message = `You only have ${(timeF - timeR) / 60000} minute remaining!. Please consider using expert help if you there is one available for you.`;
   } else {
     timeF = 420000;
     timeR = 300000;
+    message = `You only have ${(timeF - timeR) / 60000} minute remaining!.`;
   }
-  setTimerReminder(timeR, `You only have ${(timeF - timeR) / 60000} minute remaining!`);
+  setTimerReminder(timeR, message );
   setTimerForce(timeF, "You reached the time limit!", "task");
   content = utils.task(experiment.tasks, participant);
   ui.render("contents", content);
@@ -161,7 +171,10 @@ const saveSubtask = () => {
     // @ts-ignore
     el.status = status !== null ? status.checked : false;
   });
-  if (participant.tasks[`task${participant.current.task}`].expertHelp && participant.current.task === 3) {
+  if (
+    participant.tasks[`task${participant.current.task}`].expertHelp &&
+    participant.current.task === 3
+  ) {
     const expert =
       participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`];
     if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "expertHypotheses") {
@@ -207,7 +220,9 @@ const saveSubtask = () => {
       !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
         .timeUp
     ) {
-      alert("You need to write down you justification of why and why not each expert help was useful?");
+      alert(
+        "You need to write down you justification of why and why not each expert help was useful?"
+      );
       return;
     }
   } else if (
@@ -274,6 +289,8 @@ const expertHelp = () => {
 function survey() {
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
+  ui.getElement("task3").classList.remove("active", "text-primary");
+  ui.getElement("survey").classList.add("active", "text-primary");
   ui.render("contents", utils.survey());
   ui.attachEvent(ui.getElement("button"), "click", () => {
     participant.survey.expertHypotheses = ui.getElement("surveyHypotheses").value;
