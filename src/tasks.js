@@ -81,6 +81,43 @@ export const experiment = {
       ]
     }
   },
+  example:{
+    currentSubExample: 1,
+    numberOfHypotheses:1,
+    example1:{
+      description: `
+      <h4>HTML showing broken image:</h4>
+      I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
+      image.`,
+      binURL1: "https://jsbin.com/toyuxih/6/edit?output",
+      binURL2: "https://jsbin.com/toyuxih/6/edit?html",
+      binURL3: "https://jsbin.com/toyuxih/4/edit?output,html",
+      expertHypothesis1: "The path to the image is not correct.",
+      evidence1:
+        "check if the path is either written correctly as absolute path or relative path  ",
+      expertHypothesis2: "The image name is misspelled or the image extension in the src is wrong",
+      evidence2:
+        "check the name of the image and its extension. usually the extension .png or .jpg",
+      expertHypothesis3: "the image does not contain valid permission.",
+      evidence3:
+        "if the image has 755 permission.",
+      buggyLine1: 10,
+      buggyLine2: 12,
+      buggyLine3:5
+    },
+    subExample1:{
+      time: 7,
+      information: "You only have access to the bug report and the application UI. you should be able to interact with the application via GUI."
+    },
+    subExample2:{
+      time: 7,
+      information: "You only have access to the bug report and source code. Please do not attempt to fix the bug. Try to only add more hypotheses."
+    },
+    subExample3:{
+      time: 15,
+      information: "Full implementation detail.Try to fix the bug. Feel free to add more hypotheses."
+    }
+  },
   tasks: {
     numberTasks: 3,
     numberSubTasks: 3,
@@ -136,8 +173,8 @@ export const experiment = {
       <h3>React Multiple Fetch from state </h3>
       so I am trying to fetch from dogs API twice using the dog type to get the dog image  but I just get "TypeError: Cannot read property 'message' of undefined". Im fairly new to React so if it looks messy im sorry! Thanks in advance!`,
       binURL1: "https://jsbin.com/qazoyis/47/edit?console,output",
-      binURL2: "https://Alaboudi1.jsbin.com/qazoyis/51/edit?js",
-      binURL3: "https://Alaboudi1.jsbin.com/qazoyis/52/edit?js,console,output",
+      binURL2: "https://Alaboudi1.jsbin.com/qazoyis/57/edit?js",
+      binURL3: "https://Alaboudi1.jsbin.com/qazoyis/60/edit?js,console,output",
       expertHypothesis1: "You have a fetching dependency.",
       evidence1:
         "Check if you have two or more unchain fetch calls but they have dependency in their contents. For example you are using an object inside the second fetch that suppose to arrive from the first fetch.",

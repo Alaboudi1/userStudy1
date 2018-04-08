@@ -1,7 +1,7 @@
 //@ts-check
 const html = String.raw;
 // @ts-ignore
-import example from "./example.png";
+import exampleImage from "./example.png";
 // @ts-ignore
 import task1 from "./task1.png";
 // @ts-ignore
@@ -25,7 +25,7 @@ export const welcome = () => html`
     If you are not able to fix the bug using your previous hypotheses, and you are not able to generate any more hypotheses, you can check if you have the option to get expert help.
     The expert help will be discussed in the last section of this introduction.
     </p>
-    <p class="lead">
+    <!-- <p class="lead">
         <h2>Example:</h2>
         <p>
             <b>Note:</b>This example is entirely taken from a question on StackOverflow.
@@ -43,7 +43,7 @@ export const welcome = () => html`
         <br>
         <h4>HTML showing broken image:</h4>
         I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
-        image:
+        image.
     </p>
     <p class="lead">
         <div class="embed-responsive embed-responsive-21by9">
@@ -51,7 +51,7 @@ export const welcome = () => html`
         </div>
     </p>
     <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
-        <img class="card-img-top" src=${example} alt="application state">
+        <img class="card-img-top" src=${exampleImage} alt="application state">
         <div class="card-body">
             <p class="card-text"><b>This is a picture of the correct program output.</b></p>
         </div>
@@ -60,11 +60,11 @@ export const welcome = () => html`
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
             <div class="form-group">
-                <label for="evidence">evidence</label>
+                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
                 <textarea class="form-control" id="evidence3" rows="7" disabled>
 check:
 Absolute path:
@@ -80,11 +80,11 @@ Relative path:
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug. </label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
             </div>
             <div class="form-group">
-                <label for="evidence">evidence</label>
+                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
 check:
 if the image has 755 permission.
@@ -113,7 +113,7 @@ if the image has 755 permission.
         </div>
     </p>
     <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
-        <img class="card-img-top" src=${example} alt="application state">
+        <img class="card-img-top" src=${exampleImage} alt="application state">
         <div class="card-body">
             <p class="card-text"><b>This is a picture of the correct program output.</b></p>
         </div>
@@ -122,19 +122,19 @@ if the image has 755 permission.
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
             <div class="form-group">
-                <label for="evidence">evidence</label>
+                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
                                         The image path is not relative path.
                                         </textarea>
             </div>
 
             <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="example1">
-                <label class="custom-control-label text-success" for="example1">
+                <input type="checkbox" class="custom-control-input" id="exampleImage1">
+                <label class="custom-control-label text-success" for="exampleImage1">
                     <b>I approve this!</b>
                 </label>
             </div>
@@ -144,19 +144,19 @@ if the image has 755 permission.
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
             </div>
             <div class="form-group">
-                <label for="evidence">evidence</label>
+                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
 check:
 if the image has 755 permission.
                 </textarea>
             </div>
             <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="example2">
-                <label class="custom-control-label text-success" for="example2">
+                <input type="checkbox" class="custom-control-input" id="exampleImage2">
+                <label class="custom-control-label text-success" for="exampleImage2">
                     <b>I approve this!</b>
                 </label>
             </div>
@@ -180,7 +180,7 @@ if the image has 755 permission.
         </div>
     </p>
     <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
-        <img class="card-img-top" src=${example} alt="application state">
+        <img class="card-img-top" src=${exampleImage} alt="application state">
         <div class="card-body">
             <p class="card-text"><b>This is a picture of the correct program output.</b></p>
         </div>
@@ -190,16 +190,16 @@ if the image has 755 permission.
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
             </div>
             <div class="form-group">
-                <label for="evidence">evidence</label>
+                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>The image path is not relative path.</textarea>
             </div>
             <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="example2" checked>
-                <label class="custom-control-label text-success" for="example2">
+                <input type="checkbox" class="custom-control-input" id="exampleImage2" checked>
+                <label class="custom-control-label text-success" for="exampleImage2">
                     <b>I approve this!</b>
                 </label>
             </div>
@@ -210,19 +210,19 @@ if the image has 755 permission.
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
                 <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
             </div>
             <div class="form-group">
-                <label for="evidence">evidence</label>
+                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
                 <textarea class="form-control" id="evidence3" rows="3" disabled>
                                         check:
                                         if the image has 755 permission.
                                 </textarea>
             </div>
             <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="example3">
-                <label class="custom-control-label text-success" for="example3">
+                <input type="checkbox" class="custom-control-input" id="exampleImage3">
+                <label class="custom-control-label text-success" for="exampleImage3">
                     <b>I approve this!</b>
                 </label>
             </div>
@@ -242,19 +242,22 @@ if the image has 755 permission.
     <p class="lead">
         You will see either three experts hypotheses about the cause of the bug, or three source code line numbers that might contain
         the bug.
-        <br> Example:
+        <br> ExampleImage:
         <br>
         <b> Expert Hypothesis: </b>
     </p>
     <p class="card-text">
         <div class="border-bottom border-dark ">
             <div class="form-group">
-                <label for="hypothesis">hypothesis</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
+                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
+                <textarea class="form-control" id="hypothesis1" rows="3" disabled>The Image is corrupted or has the wrong format.</textarea>
             </div>
             <div class="form-group">
+              <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
+              <textarea class="form-control" id="expertEvidence1" rows="3" disabled>Go and open the image in an eternal image editor and check if the image is displayed correctly. </textarea>
+            <div class="form-group">
                 <label for="triggers">Why would you approve or disapprove this help?</label>
-                <textarea class="form-control" id="triggers2" rows="3" disabled>This is correct because the path is indeed not correct. </textarea>
+                <textarea class="form-control" id="triggers2" rows="3">This is not correct hypothesis because the image works fine in another application. </textarea>
             </div>
             <br>
     </p>
@@ -268,15 +271,18 @@ if the image has 755 permission.
             </div>
             <div class="form-group">
                 <label for="triggers">Why would you approve or disapprove this help?</label>
-                <textarea class="form-control" id="triggers2" rows="3" disabled>This this helpful because the line has the bug (path is not correct) </textarea>
+                <textarea class="form-control" id="triggers2" rows="3">This this helpful because the line has the bug (path is not correct). </textarea>
             </div>
-    </p>
-    <p class="lead">
-        Click start to start with the experiment. you will first have to answer number of questions to asses your expertise in certain
+    </p> -->
+    <!-- <p class="lead">
+        Click Start to start with an experiment. you will first have to answer number of questions to asses your expertise in certain
         technologies.
+    </p> -->
+      <p class="lead">
+        Click ExampleImage to start with an example of the experiment.
     </p>
     <div style="width: 500px; margin:auto;">
-        <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> start</button>
+        <button id="ExampleStart" data-role="assessment" class="btn btn-primary btn-lg btn-block"> Example</button>
         <br>
     </div>
 `;
@@ -352,6 +358,7 @@ export const assessment = (assessment, participant) => {
   return questionHTML;
 };
 
+///////
 export const task = (tasks, participant) => {
   const task = tasks["task" + participant.current.task];
   const hypotheses =
@@ -375,12 +382,12 @@ export const task = (tasks, participant) => {
         </div>
     </p>
     <div class="card" style="margin: auto; width: 25rem;">
-        ${participant.current.task == 1 ?
-        `<img class="card-img-top" src=${task1} alt="application state">`
-        : participant.current.task == 2 ?
-        `<img class="card-img-top" src=${task2} alt="application state">`
-        :
-        `<img class="card-img-top" src=${task3} alt="application state">`
+        ${
+          participant.current.task == 1
+            ? `<img class="card-img-top" src=${task1} alt="application state">`
+            : participant.current.task == 2
+              ? `<img class="card-img-top" src=${task2} alt="application state">`
+              : `<img class="card-img-top" src=${task3} alt="application state">`
         }
         <div class="card-body">
             <p class="card-text"><b>This is a picture of the correct program output.</b></p>
@@ -407,15 +414,27 @@ export const task = (tasks, participant) => {
             ? `block`
             : `none`
         }'>     
-       <button data-role="assessment" class="btn btn-success btn-lg" id="expertHelpButton"> Expert Help</button>
+             <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
+             <br>
+             <h4> Did you fix the bug ?</h4>
+             <button data-role="Yes" class="btn btn-success btn-lg" id="bugFixAnswer">YES</button>
+             <button data-role="No" class="btn btn-danger btn-lg" id="bugFixAnswer"> NO</button>
         </div>
-      <br>
-    <div id="expertHelpSection"></div>
-    <br>
+          <br>
+        <div id="expertHelpSection" class="card-body"></div>
+         <br>
     </div>
     <br>
-
-<div style="width: 500px; margin:auto;">
+    <p class="card-text" id="bugFixCodeSection">
+    <div class="border-bottom border-dark ">
+        <div class="form-group">
+            <label for="hypothesis">Please copy and past your javascript code here. </label>
+            <textarea class="form-control" id="bugFixCode" rows="3"></textarea>
+        </div>
+    </p>
+<div style='width: 500px; margin:auto; display: ${
+    participant.current.subtask == 3 ? `none` : `block`
+  }'>
         <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
 </div>
 <br>
@@ -438,11 +457,11 @@ export const getHypothesisForum = (
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="hypothesis">hypothesis</label>
+            <label for="hypothesis"><b>Hypothesis</b>: An assumption around the cause of the bug.</label>
             <textarea class="form-control" id="hypothesis${index}" rows="3">${hypothesis}</textarea>
         </div>
         <div class="form-group">
-            <label for="evidence">evidence</label>
+            <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
             <textarea class="form-control" id="evidence${index}" rows="3">${evidence}</textarea>
         </div>
         <div class="custom-control custom-checkbox " style="display:${
@@ -470,13 +489,13 @@ export const getExpertHypotheses = task =>
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="expertHypothesis${index}">hypothesis</label>
+            <label for="expertHypothesis${index}"><b>Hypothesis</b>: An assumption around the cause of the bug.</label>
             <textarea class="form-control" id="expertHypothesis${index}" rows="3"disabled>${
         task["expertHypothesis" + index]
       }</textarea>
         </div>
         <div class="form-group">
-              <label for="evidence">evidence</label>
+              <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
               <textarea class="form-control" id="expertEvidence${index}" rows="3" disabled>${
         task["evidence" + index]
       }</textarea>
@@ -505,7 +524,7 @@ export const getBuggyLines = task =>
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="buggyLine${index}">buggy Line</label>
+            <label for="buggyLine${index}"><b>Buggy Line</b>: Where the bug is located.</label>
             <textarea class="form-control" id="buggyLine${index}" rows="3"disabled>${
         task["buggyLine" + index]
       }</textarea>
@@ -542,8 +561,14 @@ export const survey = () => html`
             <label for="buggyLineWhy">If you were not able to fix a bug in any task, please indicate why? </label>
             <textarea class="form-control" id="surveyBugFixes" rows="3"></textarea>
         </div>
+        <div class="form-group">
+            <label for="buggyLineWhy">Please write about your expertise in software development and how many years you have been doing it. </label>
+            <textarea class="form-control" id="surveyExpertise" rows="3"></textarea>
+        </div>
     </div>
     <br>
+
+
     <div style="width: 500px; margin:auto;">
         <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
         <br>
@@ -551,3 +576,15 @@ export const survey = () => html`
 </p>
 </div>
 `;
+
+export const bugFixNo = () =>
+  html`<button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>`;
+
+export const bugFixYes = () => html`<p class="card-text" id="bugFixCodeSection">
+    <div class="border-bottom border-dark ">
+        <div class="form-group">
+            <label for="hypothesis">Please copy and past your javascript code here. </label>
+            <textarea class="form-control" id="bugFixCode" rows="3"></textarea>
+            <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
+        </div>
+    </p>`;

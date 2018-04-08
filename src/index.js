@@ -7,9 +7,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as utils from "./utils";
 import * as ui from "./UI";
 import * as db from "./db";
+import {example} from "./example";
 let timerForce, timerReminder;
 
-const renderPage = page => {
+export const renderPage = page => {
   ui.clearAll();
   switch (page) {
     case "assessment":
@@ -18,56 +19,16 @@ const renderPage = page => {
     case "task":
       tasks();
       break;
+    case "example":
+      example();
+      break;
     case "survey":
       survey();
       break;
   }
 };
 
-ui.render("contents", utils.welcome());
-
-ui.attachEvent(ui.getElement("button"), "click", () => {
-  renderPage("assessment");
-  ui.getElement("welcome").classList.remove("active", "text-primary");
-  ui.getElement("assessments").classList.add("active", "text-primary");
-  setTimerReminder(540000, "You only have 1 minute remaining!"); // 9 min
-  setTimerForce(600000, "You reached the time limit!", "assessment"); // 10 min
-});
-
 const getTime = () => new Date().toLocaleTimeString();
-
-db.init().then(payload => {
-  console.log(payload.val());
-  if (payload.val()) {
-    console.log(participant);
-    participant.tasks = payload.val().tasks;
-    participant.current = payload.val().current;
-    participant.expertise = payload.val().expertise;
-    console.log(participant);
-    if (participant.current.task == 4) {
-      renderPage("survey");
-    } else {
-      renderPage("task");
-    }
-  } else {
-    db.getTaskAssignment().then(payload => {
-      console.log(payload);
-      const array = payload.val();
-      participant.tasks[`task${array[0]}`].typeExpertHelp = "controlled";
-      participant.tasks[`task${array[1]}`].typeExpertHelp = "expertHypotheses";
-      participant.tasks[`task${array[2]}`].typeExpertHelp = "buggyLines";
-      array.push(array.shift());
-      db.setTaskAssignment(array);
-      console.log(participant);
-    });
-  }
-});
-
-ui.attachEvent(ui.getElement("skip"), "click", () => {
-  participant.current.task = ui.getElement("select").value;
-  participant.current.subtask = 1;
-  renderPage("task");
-});
 
 const setTimerForce = (time, message, page) => {
   timerForce = setTimeout(() => {
@@ -88,9 +49,12 @@ const setTimerForce = (time, message, page) => {
 const setTimerReminder = (time, message) => {
   timerReminder = setTimeout(() => {
     alert(message);
-    if(participant.current.subtask ===3 && participant.tasks[`task${participant.current.task}`].typeExpertHelp != "controlled")
-    ui.getElement("expertHelpButton").focus();
-
+    if (
+      participant.current.subtask === 3 &&
+      participant.tasks[`task${participant.current.task}`].typeExpertHelp != "controlled" &&
+      !participant.tasks[`task${participant.current.task}`].expertHelp
+    )
+      ui.getElement("expertHelpButton").focus();
   }, time);
 };
 participant.current.startTime = getTime();
@@ -123,25 +87,25 @@ const assessments = () => {
   return content;
 };
 
+
 const tasks = () => {
-  let content, timeF, timeR,message;
+  let content, timeF, timeR, message;
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
   if (participant.current.subtask === 3) {
     timeF = 960000;
     timeR = 660000;
-    message = `You only have ${(timeF - timeR) / 60000} minute remaining!. Please consider using expert help if you there is one available for you.`;
+    message = `You only have ${(timeF - timeR) /
+      60000} minute remaining!. Please consider using expert help if you there is one available for you.`;
   } else {
     timeF = 420000;
     timeR = 300000;
     message = `You only have ${(timeF - timeR) / 60000} minute remaining!.`;
   }
-  setTimerReminder(timeR, message );
+  setTimerReminder(timeR, message);
   setTimerForce(timeF, "You reached the time limit!", "task");
   content = utils.task(experiment.tasks, participant);
   ui.render("contents", content);
-  console.log(participant.tasks);
-
   participant.tasks[`task${participant.current.task}`][
     `subtask${participant.current.subtask}`
   ].subtaskStartTime = getTime();
@@ -286,7 +250,8 @@ const expertHelp = () => {
   participant.tasks[`task${participant.current.task}`].expertHelp = true;
   participant.tasks[`task${participant.current.task}`].expertHelpTime = getTime();
 };
-function survey() {
+
+const survey = () => {
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
   ui.getElement("task3").classList.remove("active", "text-primary");
@@ -296,10 +261,57 @@ function survey() {
     participant.survey.expertHypotheses = ui.getElement("surveyHypotheses").value;
     participant.survey.buggyLines = ui.getElement("surveyBuggyLines").value;
     participant.survey.bugFixes = ui.getElement("surveyBugFixes").value;
+    participant.survey.Expertise = ui.getElement("surveyExpertise").value;
+
     participant.done = true;
     db.save(participant);
     alert(
       "Thanks you for participating. Please do not close the window until you are asked to do so!"
     );
   });
-}
+};
+ui.attachEvent(ui.getElement("skip"), "click", () => {
+  participant.current.task = ui.getElement("select").value;
+  participant.current.subtask = 1;
+  renderPage("task");
+});
+db.init().then(payload => {
+  console.log(payload.val());
+  if (payload.val()) {
+    console.log(participant);
+    participant.tasks = payload.val().tasks;
+    participant.current = payload.val().current;
+    participant.expertise = payload.val().expertise;
+    console.log(participant);
+    if (participant.current.task == 4) {
+      renderPage("survey");
+    } else {
+      renderPage("task");
+    }
+  } else {
+    db.getTaskAssignment().then(payload => {
+      console.log(payload);
+      const array = payload.val();
+      participant.tasks[`task${array[0]}`].typeExpertHelp = "controlled";
+      participant.tasks[`task${array[1]}`].typeExpertHelp = "expertHypotheses";
+      participant.tasks[`task${array[2]}`].typeExpertHelp = "buggyLines";
+      array.push(array.shift());
+      db.setTaskAssignment(array);
+      console.log(participant);
+    });
+  }
+});
+ui.render("contents", utils.welcome());
+
+ui.attachEvent(ui.getElement("ExampleStart"), "click", () => {
+  renderPage("example");
+  ui.getElement("welcome").classList.remove("active", "text-primary");
+  ui.getElement("example").classList.add("active", "text-primary");
+});
+export const start = () => {
+  renderPage("assessment");
+  ui.getElement("example").classList.remove("active", "text-primary");
+  ui.getElement("assessments").classList.add("active", "text-primary");
+  setTimerReminder(600000, "You only have 5 minutes remaining!"); //10 min
+  setTimerForce(900000, "You reached the time limit!", "assessment"); // 15 min
+};

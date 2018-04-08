@@ -49,7 +49,8 @@ export const participant = {
       id: "1",
       expertHelp: false,
       typeExpertHelp: "",
-      expertHelpTime:"",
+      expertHelpTime: "",
+      participantCode: "",
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -107,7 +108,8 @@ export const participant = {
       id: "2",
       expertHelp: false,
       typeExpertHelp: "",
-      expertHelpTime:"",
+      expertHelpTime: "",
+      participantCode: "",
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -158,7 +160,8 @@ export const participant = {
       id: "3",
       expertHelp: false,
       typeExpertHelp: "",
-      expertHelpTime:"",
+      expertHelpTime: "",
+      participantCode: "",
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -220,10 +223,11 @@ export const participant = {
       }
     }
   },
-  survey:{
+  survey: {
     expertHypotheses: "",
-    buggyLines:"",
-    bugFixes:""
+    buggyLines: "",
+    bugFixes: "",
+    Expertise: ""
   },
   done: false
 };

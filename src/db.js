@@ -8,16 +8,16 @@ export const init = () => {
   database = firebase.database();
   return firebase.auth().signInAnonymously().then(()=>{
       uid = firebase.auth().currentUser.uid;
-      return database.ref(`test/participants/${uid}`).once('value')
+      return database.ref(`participants/${uid}`).once('value')
   });
 };
 
 export const save = participant => {
-    database.ref(`test/participants/${uid}`).set(participant);
+    database.ref(`participants/${uid}`).set(participant);
 }
 export const getTaskAssignment = () => {
-    return database.ref(`test/participants/random`).once('value')
+    return database.ref(`participants/random`).once('value')
 }
 export const setTaskAssignment = (random) => {
-    return database.ref(`test/participants/random`).set(random);
+    return database.ref(`participants/random`).set(random);
 }
