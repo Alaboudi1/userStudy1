@@ -51,6 +51,7 @@ export const participant = {
       typeExpertHelp: "",
       expertHelpTime: "",
       participantCode: "",
+      fixedBug: false,
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -110,6 +111,7 @@ export const participant = {
       typeExpertHelp: "",
       expertHelpTime: "",
       participantCode: "",
+      fixedBug: false,
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -162,6 +164,7 @@ export const participant = {
       typeExpertHelp: "",
       expertHelpTime: "",
       participantCode: "",
+      fixedBug: false,
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",

@@ -25,259 +25,6 @@ export const welcome = () => html`
     If you are not able to fix the bug using your previous hypotheses, and you are not able to generate any more hypotheses, you can check if you have the option to get expert help.
     The expert help will be discussed in the last section of this introduction.
     </p>
-    <!-- <p class="lead">
-        <h2>Example:</h2>
-        <p>
-            <b>Note:</b>This example is entirely taken from a question on StackOverflow.
-        </p>
-        <h3>Task # 1 </h3>
-        <h4> stage # 1: </h4>
-        <i>
-            <u>You only have access to the bug report and the application UI. you should be able to interact with the application
-                via GUI.
-            </u>
-        </i>
-    </p>
-    <p class="lead">
-        <b>Bug Report:</b>
-        <br>
-        <h4>HTML showing broken image:</h4>
-        I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
-        image.
-    </p>
-    <p class="lead">
-        <div class="embed-responsive embed-responsive-21by9">
-            <iframe src="https://jsbin.com/toyuxih/6/edit?output" width="1400px" height="1300;" class="embed-responsive-item"></iframe>
-        </div>
-    </p>
-    <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
-        <img class="card-img-top" src=${exampleImage} alt="application state">
-        <div class="card-body">
-            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
-        </div>
-    </div>
-    <h5 class="card-title">Hypothesis # 1</h5>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
-            </div>
-            <div class="form-group">
-                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
-                <textarea class="form-control" id="evidence3" rows="7" disabled>
-check:
-Absolute path:
-<img src="http://www.domain.com/MyImages/battleship-game-board.jpg"/>
-or
-Relative path:
-<img src="../MyImages/battleship-game-board.jpg"/>
-</textarea>
-            </div>
-        </div>
-    </p>
-    <h5 class="card-title">Hypothesis # 2</h5>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug. </label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
-            </div>
-            <div class="form-group">
-                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
-                <textarea class="form-control" id="evidence3" rows="3" disabled>
-check:
-if the image has 755 permission.
-                    </textarea>
-            </div>
-        </div>
-    </p>
-    <h3>Task # 1 </h3>
-    <h4> stage # 2: </h4>
-    <i>
-        <u>
-            You only have access to the bug report and source code. Please do not attempt to fix the bug. Try to approve/disapprove your
-            hypotheses or add new hypotheses.
-        </u>
-    </i>
-    <p class="lead">
-        <b>Bug Report:</b>
-        <br>
-        <h4>HTML showing broken image:</h4>
-        I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
-        image:
-    </p>
-    <p class="lead">
-        <div class="embed-responsive embed-responsive-21by9">
-            <iframe src="https://jsbin.com/toyuxih/6/edit?html" width="1400px" height="1300;" class="embed-responsive-item"></iframe>
-        </div>
-    </p>
-    <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
-        <img class="card-img-top" src=${exampleImage} alt="application state">
-        <div class="card-body">
-            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
-        </div>
-    </div>
-    <h5 class="card-title">Hypothesis # 1</h5>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
-            </div>
-            <div class="form-group">
-                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
-                <textarea class="form-control" id="evidence3" rows="3" disabled>
-                                        The image path is not relative path.
-                                        </textarea>
-            </div>
-
-            <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="exampleImage1">
-                <label class="custom-control-label text-success" for="exampleImage1">
-                    <b>I approve this!</b>
-                </label>
-            </div>
-        </div>
-    </p>
-    <h5 class="card-title">Hypothesis # 2</h5>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
-            </div>
-            <div class="form-group">
-                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
-                <textarea class="form-control" id="evidence3" rows="3" disabled>
-check:
-if the image has 755 permission.
-                </textarea>
-            </div>
-            <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="exampleImage2">
-                <label class="custom-control-label text-success" for="exampleImage2">
-                    <b>I approve this!</b>
-                </label>
-            </div>
-        </div>
-    </p>
-    <h3>Task # 1 </h3>
-    <h4> stage # 2: </h4>
-    <i>
-        <u>Full implementation detail.Try to fix the bug. Feel free to add more hypotheses.</u>
-    </i>
-    <p class="lead">
-        <b>Bug Report:</b>
-        <br>
-        <h4>HTML showing broken image:</h4>
-        i have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
-        image:
-    </p>
-    <p class="lead">
-        <div class="embed-responsive embed-responsive-21by9">
-            <iframe src="https://jsbin.com/toyuxih/4/edit?output,html" width="1400px" height="1300;" class="embed-responsive-item"></iframe>
-        </div>
-    </p>
-    <div class="card" style="margin: auto; width: 25rem; height: 31rem;">
-        <img class="card-img-top" src=${exampleImage} alt="application state">
-        <div class="card-body">
-            <p class="card-text"><b>This is a picture of the correct program output.</b></p>
-        </div>
-    </div>
-    <h5 class="card-title">Hypothesis # 1
-    </h5>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>The path to the image is not correct</textarea>
-            </div>
-            <div class="form-group">
-                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
-                <textarea class="form-control" id="evidence3" rows="3" disabled>The image path is not relative path.</textarea>
-            </div>
-            <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="exampleImage2" checked>
-                <label class="custom-control-label text-success" for="exampleImage2">
-                    <b>I approve this!</b>
-                </label>
-            </div>
-        </div>
-    </p>
-    <h5 class="card-title">Hypothesis # 2
-    </h5>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>battleship-game-board.jpg does not contain valid permission</textarea>
-            </div>
-            <div class="form-group">
-                <label for="evidence">Evidence: How would go about approving or disapproving the hypothesis.</label>
-                <textarea class="form-control" id="evidence3" rows="3" disabled>
-                                        check:
-                                        if the image has 755 permission.
-                                </textarea>
-            </div>
-            <div class="custom-control custom-checkbox mb-4">
-                <input type="checkbox" class="custom-control-input" id="exampleImage3">
-                <label class="custom-control-label text-success" for="exampleImage3">
-                    <b>I approve this!</b>
-                </label>
-            </div>
-        </div>
-    </p>
-    <p class="lead">
-        <b>Expert Help:</b>
-        <br>
-        <h4>Failing to fix the bug:</h4>
-        If your great effort did not result in fixing the bug, please indicate why and click on the expert help button.
-
-        <span style="width: 200px; margin:auto;">
-            <button data-role="assessment" class="btn btn-success btn-lg" disabled> Expert Help</button>
-            <br>
-        </span>
-    </p>
-    <p class="lead">
-        You will see either three experts hypotheses about the cause of the bug, or three source code line numbers that might contain
-        the bug.
-        <br> ExampleImage:
-        <br>
-        <b> Expert Hypothesis: </b>
-    </p>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Hypothesis: An assumption around the cause of the bug.</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>The Image is corrupted or has the wrong format.</textarea>
-            </div>
-            <div class="form-group">
-              <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
-              <textarea class="form-control" id="expertEvidence1" rows="3" disabled>Go and open the image in an eternal image editor and check if the image is displayed correctly. </textarea>
-            <div class="form-group">
-                <label for="triggers">Why would you approve or disapprove this help?</label>
-                <textarea class="form-control" id="triggers2" rows="3">This is not correct hypothesis because the image works fine in another application. </textarea>
-            </div>
-            <br>
-    </p>
-    <br>
-    <b> Buggy line: </b>
-    <p class="card-text">
-        <div class="border-bottom border-dark ">
-            <div class="form-group">
-                <label for="hypothesis">Line number</label>
-                <textarea class="form-control" id="hypothesis1" rows="3" disabled>10</textarea>
-            </div>
-            <div class="form-group">
-                <label for="triggers">Why would you approve or disapprove this help?</label>
-                <textarea class="form-control" id="triggers2" rows="3">This this helpful because the line has the bug (path is not correct). </textarea>
-            </div>
-    </p> -->
-    <!-- <p class="lead">
-        Click Start to start with an experiment. you will first have to answer number of questions to asses your expertise in certain
-        technologies.
-    </p> -->
       <p class="lead">
         Click ExampleImage to start with an example of the experiment.
     </p>
@@ -408,36 +155,32 @@ export const task = (tasks, participant) => {
         </div>
         <br>
         <br>
-        <div style='width: 200px; margin:auto; display: ${
-          participant.current.subtask == 3 &&
-          participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled`
-            ? `block`
-            : `none`
-        }'>     
-             <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
-             <br>
-             <h4> Did you fix the bug ?</h4>
-             <button data-role="Yes" class="btn btn-success btn-lg" id="bugFixAnswer">YES</button>
-             <button data-role="No" class="btn btn-danger btn-lg" id="bugFixAnswer"> NO</button>
+        <div style='display: ${participant.current.subtask == 3 ? `block` : `none`}'>     
+            <div style='display: ${
+                participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled`
+                  ? `block`
+                  : `none`
+              }'>
+                <br>
+                <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
+                <div id="expertHelpSection" class="card-body"></div>
+            </div>
+            <br>
+            <h4> Did you fix the bug ?</h4>
+            <button data-role="Yes" class="btn btn-success btn-lg" id="bugFixAnswerYes">YES</button>
+            <button data-role="No" class="btn btn-danger btn-lg" id="bugFixAnswerNo"> NO</button>
+            <br>
+            <br>
+            <div id="bugFixAnswer"></div>
+            <br>
         </div>
-          <br>
-        <div id="expertHelpSection" class="card-body"></div>
-         <br>
+        <br>
+    <div style='width: 500px; margin:auto; display: ${
+      participant.current.subtask == 3 ? `none` : `block`
+    }'>
+            <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
     </div>
     <br>
-    <p class="card-text" id="bugFixCodeSection">
-    <div class="border-bottom border-dark ">
-        <div class="form-group">
-            <label for="hypothesis">Please copy and past your javascript code here. </label>
-            <textarea class="form-control" id="bugFixCode" rows="3"></textarea>
-        </div>
-    </p>
-<div style='width: 500px; margin:auto; display: ${
-    participant.current.subtask == 3 ? `none` : `block`
-  }'>
-        <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
-</div>
-<br>
 
 `;
 
@@ -465,7 +208,7 @@ export const getHypothesisForum = (
             <textarea class="form-control" id="evidence${index}" rows="3">${evidence}</textarea>
         </div>
         <div class="custom-control custom-checkbox " style="display:${
-          sub !== 1 ? " flex " : "none "
+          sub === 3 ? " flex " : "none "
         }">
         ${
           status
@@ -578,13 +321,14 @@ export const survey = () => html`
 `;
 
 export const bugFixNo = () =>
-  html`<button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>`;
+  html`<button id="button" data-role="assessment" style='width: 500px; margin:auto;' class="btn btn-primary btn-lg btn-block"> submit</button>`;
 
 export const bugFixYes = () => html`<p class="card-text" id="bugFixCodeSection">
-    <div class="border-bottom border-dark ">
+    <div class="card-text">
         <div class="form-group">
-            <label for="hypothesis">Please copy and past your javascript code here. </label>
-            <textarea class="form-control" id="bugFixCode" rows="3"></textarea>
-            <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
+            <label for="hypothesis">Please copy and past your fixed code here. </label>
+            <textarea class="form-control" id="bugFixCode" rows="4"style='width: 95%; margin:auto;'></textarea>
+            <br>
+            <button id="button" data-role="assessment" style='width: 500px; margin:auto;' class="btn btn-primary btn-lg btn-block"> submit</button>
         </div>
     </p>`;

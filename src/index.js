@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import * as utils from "./utils";
 import * as ui from "./UI";
 import * as db from "./db";
-import {example} from "./example";
+import { example } from "./example";
 let timerForce, timerReminder;
 
 export const renderPage = page => {
@@ -87,30 +87,47 @@ const assessments = () => {
   return content;
 };
 
-
 const tasks = () => {
   let content, timeF, timeR, message;
   clearTimeout(timerReminder);
   clearTimeout(timerForce);
+  content = utils.task(experiment.tasks, participant);
+  ui.render("contents", content);
   if (participant.current.subtask === 3) {
     timeF = 960000;
     timeR = 660000;
     message = `You only have ${(timeF - timeR) /
       60000} minute remaining!. Please consider using expert help if you there is one available for you.`;
+    ui.attachEvent(ui.getElement("bugFixAnswerYes"), "click", () => {
+      ui.getElement("bugFixAnswer").innerHTML = utils.bugFixYes();
+      ui.attachEvent(ui.getElement("button"), "click", () => {
+        participant.tasks[`task${participant.current.task}`]["participantCode"] = ui.getElement(
+          "bugFixCode"
+        ).value;
+        saveSubtask();
+      });
+      participant.tasks[`task${participant.current.task}`].fixedBug = true;
+    });
+    ui.attachEvent(ui.getElement("bugFixAnswerNo"), "click", () => {
+      ui.getElement("bugFixAnswer").innerHTML = utils.bugFixNo();
+      ui.attachEvent(ui.getElement("button"), "click", saveSubtask);
+      participant.tasks[`task${participant.current.task}`][
+        `subtask${participant.current.subtask}`
+      ].fixedBug = false;
+    });
   } else {
     timeF = 420000;
     timeR = 300000;
     message = `You only have ${(timeF - timeR) / 60000} minute remaining!.`;
+    ui.attachEvent(ui.getElement("button"), "click", saveSubtask);
   }
   setTimerReminder(timeR, message);
   setTimerForce(timeF, "You reached the time limit!", "task");
-  content = utils.task(experiment.tasks, participant);
-  ui.render("contents", content);
+
   participant.tasks[`task${participant.current.task}`][
     `subtask${participant.current.subtask}`
   ].subtaskStartTime = getTime();
   ui.attachEvent(ui.getElement("expertHelpButton"), "click", expertHelp);
-  ui.attachEvent(ui.getElement("button"), "click", saveSubtask);
   //@ts-ignore
   ui.attachEvent(
     ui.getElement("refresh"),
@@ -135,9 +152,10 @@ const saveSubtask = () => {
     // @ts-ignore
     el.status = status !== null ? status.checked : false;
   });
+  console.log(participant);
   if (
     participant.tasks[`task${participant.current.task}`].expertHelp &&
-    participant.current.task === 3
+    participant.current.subtask === 3
   ) {
     const expert =
       participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`];
@@ -200,6 +218,9 @@ const saveSubtask = () => {
       return;
     }
   }
+  participant.tasks[`task${participant.current.task}`][
+    `subtask${participant.current.subtask}`
+  ].subtaskEndTime = getTime();
   if (participant.current.subtask < experiment.tasks.numberSubTasks) {
     participant.current.subtask++;
     let hypotheses2 = hypotheses.map(e => ({ ...e }));
@@ -231,7 +252,6 @@ const addHypothesis = () => {
   hypotheses.push({
     hypothesis: "",
     evidence: "",
-    triggers: "",
     status: false
   });
   const div = document.createElement("div");

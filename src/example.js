@@ -40,8 +40,8 @@ export const experimentExample = example => {
             <div id="hypotheses" class="card-body">
                 ${
                   example.currentSubExample === 3
-                    ? getExampleHypotheses(true, 1)
-                    : getExampleHypotheses(false, 1)
+                    ? getExampleHypotheses(true, 1, 3)
+                    : getExampleHypotheses(false, 1, 2)
                 }
             </div>
             <div style="width: 300px; margin:auto;">
@@ -60,10 +60,10 @@ export const experimentExample = example => {
                   <br>
                   <br>
                   <div id="bugFixAnswer"></div>
+                  <br>
              </div>
         </div>
         <br>
-        <div style='width: 500px; margin:auto;' id="IsBugFixed"></div>
     <div style='width: 500px; margin:auto; display: ${
       example.currentSubExample === 3 ? `none` : `block`
     }'>
@@ -199,17 +199,14 @@ export const example = () => {
     () => (ui.getElement("application").src += "")
   );
   if (experiment.example.currentSubExample === 3) {
-    ui.attachEvent(ui.getElement("exampleButton"), "click", start);
-    ui.attachEvent(
-      ui.getElement("bugFixAnswerYes"),
-      "click",
-      () => (ui.getElement("bugFixAnswer").innerHTML = utils.bugFixYes())
-    );
-    ui.attachEvent(
-      ui.getElement("bugFixAnswerNo"),
-      "click",
-      () => (ui.getElement("bugFixAnswer").innerHTML = utils.bugFixNo())
-    );
+    ui.attachEvent(ui.getElement("bugFixAnswerYes"), "click", () => {
+      ui.getElement("bugFixAnswer").innerHTML = utils.bugFixYes();
+      ui.attachEvent(ui.getElement("button"), "click", start);
+    });
+    ui.attachEvent(ui.getElement("bugFixAnswerNo"), "click", () => {
+      ui.getElement("bugFixAnswer").innerHTML = utils.bugFixNo();
+      ui.attachEvent(ui.getElement("button"), "click", start);
+    });
   } else {
     ui.attachEvent(ui.getElement("exampleButton"), "click", () => renderPage("example"));
     experiment.example.currentSubExample++;
