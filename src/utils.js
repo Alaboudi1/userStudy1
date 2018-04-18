@@ -12,21 +12,14 @@ import task3 from "./task3.png";
 export const welcome = () => html`
 <div class="jumbotron">
     <h1 class="display-4">Welcome!</h1>
-    <p class="lead">Thank you for participating in this study! This study will take around two hours to complete. The aim of the study is
-        to closely examines the debugging activity through understanding how developers build and share hypotheses about the cause
-        of a bug. There will be three tasks that include three defected small applications taken from StackOverflow questions.
-        Each task, you will be asked to write down your hypotheses, and how would you go about approving or disapproving these hypotheses.
+    <p class="lead">Thank you for participating in this study! The study will take around two hours to complete. The aim here is to carefully examine the debugging activity through understanding how developers generate and use hypotheses about the cause of a bug. There will be three tasks that include three defected small applications taken from StackOverflow questions. Each task, you will be asked to write down your hypotheses, and how you would go about testing these hypotheses before you use them to try to fix the bug in the application. 
 
     </p>
-    <p class="lead"> In this study, the process of building hypotheses for each defected application will span across three stages. 
-    In the first stage, you will be asked to write down your hypotheses by only having access to the bug report and the application user interface. 
-    In the second stage, you will be asked to approve your previous hypotheses after gaining access to the source code. 
-    You also can write more hypotheses at this stage.In the third stage, you will be asked To fix the bug by trying your previous hypotheses.
-    If you are not able to fix the bug using your previous hypotheses, and you are not able to generate any more hypotheses, you can check if you have the option to get expert help.
-    The expert help will be discussed in the last section of this introduction.
+    <p class="lead"> Each task has three subtasks. In the first subtask, you will be asked to write down your hypotheses and the hypotheses testing steps by only having access to the bug report, the application user interfaces and a picture of the output. In the second subtask, you will be asked to generate more hypotheses after gaining access to the source code, but you will be able to debug the code yet. In the third subtask, you will be asked To fix the bug by trying your previous hypotheses. You can debug the application using the conventional 'console.log' statements.  If you are not able to fix the bug using your previous hypotheses, and you are not able to generate any more hypotheses, you can check if you have the option to get expert help. The expert help will be either a set of potential buggy lines or pre-generated hypotheses about the cause of the bug. 
+
     </p>
       <p class="lead">
-        Click ExampleImage to start with an example of the experiment.
+      Click Example to start with an example of the experiment.
     </p>
     <div style="width: 500px; margin:auto;">
         <button id="ExampleStart" data-role="assessment" class="btn btn-primary btn-lg btn-block"> Example</button>
@@ -157,10 +150,10 @@ export const task = (tasks, participant) => {
         <br>
         <div style='display: ${participant.current.subtask == 3 ? `block` : `none`}'>     
             <div style='display: ${
-                participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled`
-                  ? `block`
-                  : `none`
-              }'>
+              participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled`
+                ? `block`
+                : `none`
+            }'>
                 <br>
                 <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
                 <div id="expertHelpSection" class="card-body"></div>
@@ -204,7 +197,7 @@ export const getHypothesisForum = (
             <textarea class="form-control" id="hypothesis${index}" rows="3">${hypothesis}</textarea>
         </div>
         <div class="form-group">
-            <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
+            <label for="evidence"><b>Testing Steps</b>: How would go about testing your hypothesis.</label>
             <textarea class="form-control" id="evidence${index}" rows="3">${evidence}</textarea>
         </div>
         <div class="custom-control custom-checkbox " style="display:${
@@ -238,7 +231,7 @@ export const getExpertHypotheses = task =>
       }</textarea>
         </div>
         <div class="form-group">
-              <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
+              <label for="evidence"><b>Testing Steps</b>: How would go about testing your hypothesis.</label>
               <textarea class="form-control" id="expertEvidence${index}" rows="3" disabled>${
         task["evidence" + index]
       }</textarea>
@@ -321,12 +314,23 @@ export const survey = () => html`
 `;
 
 export const bugFixNo = () =>
-  html`<button id="button" data-role="assessment" style='width: 500px; margin:auto;' class="btn btn-primary btn-lg btn-block"> submit</button>`;
+  html`
+   <div class="card-text">
+        <div class="form-group">
+            <label for="hypothesis">Please copy and past your code here. </label>
+            <textarea class="form-control" id="bugFixCode" rows="4"style='width: 95%; margin:auto;'></textarea>
+            <br>
+            <label for="hypothesis">Please indicate why you could not fix the bug? </label>
+            <textarea class="form-control" id="bugFixCode" rows="4"style='width: 95%; margin:auto;'></textarea>
+            <br>
+            <button id="button" data-role="assessment" style='width: 500px; margin:auto;' class="btn btn-primary btn-lg btn-block"> submit</button>;
+        </div>
+    </p>`;
 
 export const bugFixYes = () => html`<p class="card-text" id="bugFixCodeSection">
     <div class="card-text">
         <div class="form-group">
-            <label for="hypothesis">Please copy and past your fixed code here. </label>
+            <label for="hypothesis">Please copy and past your code here. </label>
             <textarea class="form-control" id="bugFixCode" rows="4"style='width: 95%; margin:auto;'></textarea>
             <br>
             <button id="button" data-role="assessment" style='width: 500px; margin:auto;' class="btn btn-primary btn-lg btn-block"> submit</button>

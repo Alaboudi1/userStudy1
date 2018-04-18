@@ -89,7 +89,7 @@ export const getExpertHypothesesExample = example =>
       }</textarea>
         </div>
         <div class="form-group">
-              <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
+              <label for="evidence"><b>Testing Steps</b>: How would go about testing your hypothesis.</label>
               <textarea class="form-control" id="expertEvidence${index}" rows="3" disabled>${
         example["example1"]["evidence" + index]
       }</textarea>
@@ -150,7 +150,7 @@ const getExampleHypotheses = (hypotheses = false, index, subExample) => html`
 }</textarea>
           </div>
           <div class="form-group">
-              <label for="evidence"><b>Evidence</b>: How would go about approving or disapproving the hypothesis.</label>
+              <label for="evidence"><b>Testing Steps</b>: How would go about testing your hypothesis.</label>
               <textarea class="form-control" id="evidence${index}" rows="3">${
   hypotheses
     ? "check the name of the image and its extension. usually the extension .png or .jpg"
