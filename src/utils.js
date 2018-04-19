@@ -223,7 +223,7 @@ export const getHypothesisForum = (
             : `<input type="checkbox" class="custom-control-input" id="hypothesisApprove${index}">`
         }
             <label class="custom-control-label text-success" for="hypothesisApprove${index}">
-                <b>This the hypothesis I used to fix the bug!</b>
+                <b>This is the hypothesis I used to fix the bug!</b>
             </label>
         </div>
     </div>
@@ -257,7 +257,7 @@ export const getExpertHypotheses = task =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
             <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
-                <b>This the hypothesis I used to fix the bug!</b>
+                <b>This is the hypothesis I used to fix the bug!</b>
             </label>
         </div>
     </div>
