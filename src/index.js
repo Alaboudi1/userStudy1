@@ -102,7 +102,7 @@ const tasks = () => {
       ui.getElement("bugFixAnswer").innerHTML = utils.bugFixYes();
       ui.attachEvent(ui.getElement("button"), "click", () => {
         participant.tasks[`task${participant.current.task}`]["participantCode"] = ui.getElement(
-          "bugFixCode"
+          "participantCode"
         ).value;
         saveSubtask();
       });
@@ -110,10 +110,15 @@ const tasks = () => {
     });
     ui.attachEvent(ui.getElement("bugFixAnswerNo"), "click", () => {
       ui.getElement("bugFixAnswer").innerHTML = utils.bugFixNo();
-      ui.attachEvent(ui.getElement("button"), "click", saveSubtask);
-      participant.tasks[`task${participant.current.task}`][
-        `subtask${participant.current.subtask}`
-      ].fixedBug = false;
+      participant.tasks[`task${participant.current.task}`].fixedBug = false;
+      ui.attachEvent(ui.getElement("button"), "click", () => {
+        participant.tasks[`task${participant.current.task}`]["participantCode"] = ui.getElement(
+          "participantCode").value;
+          participant.tasks[`task${participant.current.task}`]["whyNotFixBug"] = ui.getElement(
+            "whyNotFixBug"
+        ).value;
+        saveSubtask();
+      });
     });
   } else {
     timeF = 420000;
@@ -203,18 +208,18 @@ const saveSubtask = () => {
         .timeUp
     ) {
       alert(
-        "You need to write down you justification of why and why not each expert help was useful?"
+        "You asked for expert help, but you have not indicated whether each help was useful or not."
       );
       return;
     }
   } else if (
     participant.current.subtask == 3 &&
     !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
-      .timeUp
+      .timeUp && participant.tasks[`task${participant.current.task}`].fixedBug 
   ) {
     const approve = hypotheses.filter(h => h.status);
     if (approve.length == 0) {
-      alert("You need to approve at least one of your hypotheses or ask for expert help");
+      alert("You either need to pick which of your hypotheses helped you to fix the bug or ask of expert help.");
       return;
     }
   }
@@ -290,11 +295,11 @@ const survey = () => {
     );
   });
 };
-ui.attachEvent(ui.getElement("skip"), "click", () => {
-  participant.current.task = ui.getElement("select").value;
-  participant.current.subtask = 1;
-  renderPage("task");
-});
+// ui.attachEvent(ui.getElement("skip"), "click", () => {
+//   participant.current.task = ui.getElement("select").value;
+//   participant.current.subtask = 1;
+//   renderPage("task");
+// });
 db.init().then(payload => {
   console.log(payload.val());
   if (payload.val()) {

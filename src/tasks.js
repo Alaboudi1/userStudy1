@@ -21,7 +21,7 @@ export const experiment = {
     Q3: {
       text: `There are many ways to handle asynchronous programming in javaScript. Which one is not one of these ways?:`,
       code: "",
-      answers: ["Promise", "callback", "async/await", "thread", "I do not know!"]
+      answers: ["Promise", "Callback", "Async/Await", "Thread", "I do not know!"]
     },
 
     Q4: {
@@ -39,10 +39,10 @@ export const experiment = {
       text: `In React, the setState function is`,
       code: "",
       answers: [
-        "synchronous",
-        "asynchronous",
-        "prototype function",
-        "only supported for mobile",
+        "Synchronous",
+        "Asynchronous",
+        "Prototype function",
+        "Only supported for mobile",
         "I do not know!"
       ]
     },
@@ -56,21 +56,21 @@ export const experiment = {
       text: `D3.js is`,
       code: "",
       answers: [
-        " a JavaScript library for manipulating documents based on data",
-        "an Http library that makes AJAX call simpler",
-        "a 3D graphics library for building games in javascript",
-        "an advance ML library for javascript",
+        " A JavaScript library for manipulating documents based on data.",
+        "A Http library that makes AJAX call simpler.",
+        "A 3D graphics library for building games in javascript.",
+        "An advance ML library for javascript.",
         "I do not know!"
       ]
     },
 
     Q8: {
-      text: `To add a node element to the DOM using D3, you need to use you which D3 API`,
+      text: `To add a node element to the DOM using D3, you need to use which D3 API?`,
       code: "",
       answers: ["attach()", "appendChild()", "attachChild()", "append()", "I do not know!"]
     },
     Q9: {
-      text: `The D3 API equivalent to document.getElementById('id')`,
+      text: `The D3 API equivalent to document.getElementById('id') is:`,
       code: "",
       answers: [
         "d3.select('#id')",
@@ -81,10 +81,10 @@ export const experiment = {
       ]
     }
   },
-  example:{
+  example: {
     currentSubExample: 1,
-    numberOfHypotheses:1,
-    example1:{
+    numberOfHypotheses: 1,
+    example1: {
       description: `
       <h4>HTML showing broken image:</h4>
       I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
@@ -99,28 +99,45 @@ export const experiment = {
       evidence2:
         "check the name of the image and its extension. usually the extension .png or .jpg",
       expertHypothesis3: "the image does not contain valid permission.",
-      evidence3:
-        "if the image has 755 permission.",
+      evidence3: "if the image has 755 permission.",
       buggyLine1: 10,
       buggyLine2: 12,
-      buggyLine3:5
+      buggyLine3: 5
     },
-    subExample1:{
+    subExample1: {
       time: 7,
-      information: "You only have access to the bug report and the application UI. you should be able to interact with the application via GUI."
+      information:
+        "Here you only have access to the bug report and the application UI. You can interact with the application via the GUI. Please write as many hypotheses as you can think."
     },
-    subExample2:{
+    subExample2: {
       time: 7,
-      information: "You only have access to the bug report and source code. Please do not attempt to fix the bug. Try to only add more hypotheses."
+      information:
+        "Below is the code for the bug report you just viewed. At this stage, you may read the code, but may not run the code. Based on what you learn from reading the code, please update your hypothe(s), removing hypotheses you have ruled out, adding additional hypotheses you might have, and revising hypotheses that still seem plausible."
     },
-    subExample3:{
+    subExample3: {
       time: 15,
-      information: "Full implementation detail.Try to fix the bug. Feel free to add more hypotheses."
+      information:
+        "You have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
     }
   },
   tasks: {
     numberTasks: 3,
     numberSubTasks: 3,
+    subtaskInfo1: {
+      time: 7,
+      information:
+        "Here you only have access to the bug report and the application UI. You can interact with the application via the GUI. Please write as many hypotheses as you can think."
+    },
+    subtaskInfo2: {
+      time: 7,
+      information:
+        "Below is the code for the bug report you just viewed. At this stage, you may read the code, but may not run the code. Based on what you learn from reading the code, please update your hypothe(s), removing hypotheses you have ruled out, adding additional hypotheses you might have, and revising hypotheses that still seem plausible."
+    },
+    subtaskInfo3: {
+      time: 15,
+      information:
+        "You have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
+    },
     // task1: {
     //   description: `
     //   <h3>Function returning undefined after calling in string</h3>
@@ -199,7 +216,8 @@ export const experiment = {
       evidence1:
         "Check if you are correctly taking the values from your dataset and assign them to the corresponding variable i.e. the x, y, and z axises.",
       expertHypothesis2: "You have a problem in the way you map the data to width or height.",
-      evidence2: "check the method that set the width and the height and see if the calculations are correct.",
+      evidence2:
+        "check the method that set the width and the height and see if the calculations are correct.",
       expertHypothesis3: "Your data is not correctly formated.",
       evidence3: "Check if your are data is correct and has no formating problems.",
       buggyLine1: 2,

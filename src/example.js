@@ -26,11 +26,9 @@ export const experimentExample = example => {
                 } class="embed-responsive-item"></iframe>
             </div>
         </p>
+         <p class="lead"><b>This is a picture of the correct program output.</b></p>
         <div class="card" style="margin: auto; width: 25rem;">
         <img class="card-img-top" src=${exampleImage} alt="application state">
-            <div class="card-body">
-                <p class="card-text"><b>This is a picture of the correct program output.</b></p>
-            </div>
         </div>
         <br>
         <div class="card text-center">
@@ -44,12 +42,12 @@ export const experimentExample = example => {
                     : getExampleHypotheses(false, 1, 2)
                 }
             </div>
-            <div style="width: 300px; margin:auto;">
+            <div style="width: 300px; margin:10px auto;">
                 <button id="addHypothesisExample" class="btn btn-success">Add another Hypothesis</button>
             </div>
             <br>
             <br>
-            <div style='display: ${example.currentSubExample === 3 ? `block` : `none`}'>     
+            <div style='display: ${example.currentSubExample === 3 ? `block` : `none`};  margin-top:10px'>     
                  <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
                  <div id="expertHelpSection" class="card-body"></div>
   
@@ -83,7 +81,8 @@ export const getExpertHypothesesExample = example =>
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="expertHypothesis${index}"><b>Hypothesis</b>: An assumption around the cause of the bug.</label>
+            <label for="expertHypothesis${index}"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is the underling cause of the bug?</label>
+
             <textarea class="form-control" id="expertHypothesis${index}" rows="3"disabled>${
         example["example1"]["expertHypothesis" + index]
       }</textarea>
@@ -101,7 +100,7 @@ export const getExpertHypothesesExample = example =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
             <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
-                <b>I approve this!</b>
+                <b>This the hypothesis I used to fix the bug!</b>
             </label>
         </div>
     </div>
@@ -130,7 +129,7 @@ export const getBuggyLinesExample = example =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="buggyLineApprove${index}">
             <label class="custom-control-label text-success" for="buggyLineApprove${index}">
-                <b>I approve this!</b>
+                <b>This bug line helped me to fix the bug!</b>
             </label>
         </div>
     </div>
@@ -144,13 +143,13 @@ const getExampleHypotheses = (hypotheses = false, index, subExample) => html`
   <p class="card-text">
       <div class="border-bottom border-dark ">
           <div class="form-group">
-              <label for="hypothesis"><b>Hypothesis</b>: An assumption around the cause of the bug.</label>
+              <label for="hypothesis"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is the underling cause of the bug?</label>
               <textarea class="form-control" id="hypothesis${index}" rows="3">${
   hypotheses ? "The image name is misspelled or the image extension in the src is wrong" : ""
 }</textarea>
           </div>
           <div class="form-group">
-              <label for="evidence"><b>Testing Steps</b>: How would go about testing your hypothesis.</label>
+              <label for="evidence"><b>Testing Steps</b>: what are the steps that you are going to take to check whether this hypothesis is valid or not?.</label>
               <textarea class="form-control" id="evidence${index}" rows="3">${
   hypotheses
     ? "check the name of the image and its extension. usually the extension .png or .jpg"
@@ -166,7 +165,7 @@ const getExampleHypotheses = (hypotheses = false, index, subExample) => html`
               : `<input type="checkbox" class="custom-control-input" id="hypothesisApprove${index}">`
           }
               <label class="custom-control-label text-success" for="hypothesisApprove${index}">
-                  <b>I approve this!</b>
+                  <b>This the hypothesis I used to fix the bug!</b>
               </label>
           </div>
       </div>

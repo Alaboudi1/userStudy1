@@ -52,6 +52,7 @@ export const participant = {
       expertHelpTime: "",
       participantCode: "",
       fixedBug: false,
+      whyNotFixBug: "",
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -59,8 +60,7 @@ export const participant = {
         hypotheses: [
           {
             hypothesis: "",
-            evidence: "",
-            triggers: ""
+            evidence: ""
           }
         ]
       },
@@ -72,7 +72,6 @@ export const participant = {
           {
             hypothesis: "",
             evidence: "",
-            triggers: "",
             status: false
           }
         ]
@@ -85,7 +84,6 @@ export const participant = {
           {
             hypothesis: "",
             evidence: "",
-            triggers: "",
             status: false
           }
         ],
@@ -112,6 +110,7 @@ export const participant = {
       expertHelpTime: "",
       participantCode: "",
       fixedBug: false,
+      whyNotFixBug: "",
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -119,8 +118,7 @@ export const participant = {
         hypotheses: [
           {
             hypothesis: "",
-            evidence: "",
-            triggers: ""
+            evidence: ""
           }
         ]
       },
@@ -132,7 +130,6 @@ export const participant = {
           {
             hypothesis: "",
             evidence: "",
-            triggers: "",
             status: false
           }
         ]
@@ -145,7 +142,6 @@ export const participant = {
           {
             hypothesis: "",
             evidence: "",
-            triggers: "",
             status: false
           }
         ],
@@ -165,6 +161,7 @@ export const participant = {
       expertHelpTime: "",
       participantCode: "",
       fixedBug: false,
+      whyNotFixBug: "",
       subtask1: {
         timeUp: false,
         subtaskStartTime: "",
@@ -172,17 +169,9 @@ export const participant = {
         hypotheses: [
           {
             hypothesis: "",
-            evidence: "",
-            triggers: ""
+            evidence: ""
           }
         ],
-        buggyLines: [
-          {
-            line: "",
-            status: false,
-            why: ""
-          }
-        ]
       },
       subtask2: {
         timeUp: false,
@@ -192,7 +181,6 @@ export const participant = {
           {
             hypothesis: "",
             evidence: "",
-            triggers: "",
             status: false
           }
         ]
@@ -205,7 +193,6 @@ export const participant = {
           {
             hypothesis: "",
             evidence: "",
-            triggers: "",
             status: false
           }
         ],
