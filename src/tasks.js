@@ -19,7 +19,7 @@ export const experiment = {
     },
 
     Q3: {
-      text: `There are many ways to handle asynchronous programming in javaScript. Which one is not one of these ways?:`,
+      text: `There are many ways to handle asynchronous programming in javaScript. Which one is NOT one of these ways?:`,
       code: "",
       answers: ["Promise", "Callback", "Async/Await", "Thread", "I do not know!"]
     },
@@ -53,11 +53,11 @@ export const experiment = {
     },
 
     Q7: {
-      text: `D3.js is`,
+      text: `Jquery is`,
       code: "",
       answers: [
-        " A JavaScript library for manipulating documents based on data.",
-        "A Http library that makes AJAX call simpler.",
+        " A Http library that makes AJAX call simpler.",
+        "A JavaScript library for HTML document manipulation, event handling, animation, and Ajax.",
         "A 3D graphics library for building games in javascript.",
         "An advance ML library for javascript.",
         "I do not know!"
@@ -65,18 +65,24 @@ export const experiment = {
     },
 
     Q8: {
-      text: `To add a node element to the DOM using D3, you need to use which D3 API?`,
-      code: "",
-      answers: ["attach()", "appendChild()", "attachChild()", "append()", "I do not know!"]
-    },
-    Q9: {
-      text: `The D3 API equivalent to document.getElementById('id') is:`,
+      text: `To add a node element to the DOM using Jquery, you need to use which Jquery API?`,
       code: "",
       answers: [
-        "d3.select('#id')",
-        "d3.get('id')",
-        "d3.selectById('id')",
-        "d3.getElement('#id')",
+        "attach(element)",
+        "appendChild(element)",
+        "attachChild(element)",
+        "add(element)",
+        "I do not know!"
+      ]
+    },
+    Q9: {
+      text: `The JQuery API equivalent to document.getElementById('id').addEventListener("click",callback) is:`,
+      code: "",
+      answers: [
+        `JQuery.attachEventTo('id').click(callback);`,
+        `$("#id ).addEventListener("click", callback);`,
+        "JQuery.getElement('id').addEventListener('click',callback)",
+        `$("#id ).on( "click", callback);`,
         "I do not know!"
       ]
     }
@@ -90,8 +96,8 @@ export const experiment = {
       I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
       image.`,
       binURL1: "https://jsbin.com/toyuxih/6/edit?output",
-      binURL2: "https://jsbin.com/toyuxih/6/edit?html",
-      binURL3: "https://jsbin.com/toyuxih/4/edit?output,html",
+      binURL2: "https://Alaboudi1.jsbin.com/budihaquci/1/edit?html",
+      binURL3: "https://Alaboudi1.jsbin.com/budihaquci/1/edit?html,output",
       expertHypothesis1: "The path to the image is not correct.",
       evidence1:
         "check if the path is either written correctly as absolute path or relative path  ",
@@ -138,28 +144,6 @@ export const experiment = {
       information:
         "You have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
     },
-    // task1: {
-    //   description: `
-    //   <h3>Function returning undefined after calling in string</h3>
-    //   I'm trying to make a shopping cart using JS and one of my tasks is to create a placeOrder function.
-    //   <ul><li>The placeOrder() function accepts one argument, a credit card number.</li>
-    //   <li>If no argument is received, the function should print out Sorry, we don't have a credit card on file for you.</li>
-    //   <li>If a card number is received, the function should print out Your total cost is $71, which will be charged to the card 83296759. Then, it should empty the cart array.</li>
-    //   </ul>
-    //   However, when I call in the total function into the string keeps returning undefined.`,
-    //   binURL1: "https://jsbin.com/xaxodeg/edit?console,output",
-    //   binURL2: "https://jsbin.com/xaxodeg/edit?js",
-    //   binURL3: "https://jsbin.com/xaxodeg/edit?js,console,output",
-    //   expertHypothesis1:
-    //     "Getting a value from asynchronous function in synchronous way",
-    //   evidence1:
-    //     "Check if you are dealing with any asynchronous call, e.g. http call. if so, try to wait until the call ends using promise.then.",
-    //   expertHypothesis2: "You are calling the wrong function!",
-    //   evidence2:
-    //     "Check if you have the correct function name or you are using the correct API and not something similar.",
-    //   expertHypothesis3: "The function is not returning a value",
-    //   evidence3: "Check if each possible path in the function return a value."
-    // },
     task1: {
       description: `
       <h3>Change Link Visibility — Event Listener with mouseover and getElementsByClassName</h3>
@@ -177,13 +161,27 @@ export const experiment = {
         "Check if you are using the correct CSS property to change the visibility of an element. Example: visibility: 'visible' or 'hidden', or  display: 'none' or 'block'",
       expertHypothesis2: "You are using the wrong DOM API or not using it correctly.",
       evidence2:
-        "Check of you using the correct DOM API. Also remember: document.getElementById returns an HTML element that has the same id, document.getElementsByClassName returns a HTMLCollection that you have to iterate over.",
+        "Check of you are using the correct DOM API. Also remember: document.getElementById returns an HTML element that has the same id, document.getElementsByClassName returns a HTMLCollection that you have to iterate over.",
       expertHypothesis3: "You are subscribing to the wrong event.",
       evidence3:
         "make sure you spell the event name correctly(e.g. 'click' and not 'onclick'). Also, check you have used the addEventListener API correctly (e.g. element.addEventListener(event,callback))",
       buggyLine1: 2,
       buggyLine2: 5,
-      buggyLine3: 3
+      buggyLine3: 3,
+      links: [
+        {
+          topic: "document.getElementsByClassName",
+          link: "https://www.w3schools.com/jsref/met_document_getelementsbyclassname.asp"
+        },
+        {
+          topic: "style visibility",
+          link: "https://www.w3schools.com/jsref/prop_style_visibility.asp"
+        },
+        {
+          topic: "document.addEventListener",
+          link: "https://www.w3schools.com/jsref/met_document_addeventlistener.asp"
+        }
+      ]
     },
     task2: {
       description: `
@@ -204,25 +202,47 @@ export const experiment = {
         "setState is an asynchronous function. If you try to access the state immediately after changing it, check that you are doing it through a callback. For example, this.setState(newState, callback)",
       buggyLine1: 42,
       buggyLine2: 65,
-      buggyLine3: 38
+      buggyLine3: 38,
+      links: [
+        {
+          topic: "Http Fetch API",
+          link: "https://developers.google.com/web/updates/2015/03/introduction-to-fetch"
+        },
+        {
+          topic: "Conditional Rendering",
+          link: "https://reactjs.org/docs/conditional-rendering.html"
+        },
+        {
+          topic: "SetState API",
+          link:
+            "https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous"
+        }
+      ]
     },
     task3: {
-      description: `<h3>d3.js Histogram does not show columns</h3>
-      I am trying to create a d3 histogram but the columns are not showing up. I am new to d3 and have hours spent trying to figure it out with no success.`,
-      binURL1: "https://Alaboudi1.jsbin.com/vinuram/12/edit?output",
-      binURL2: "https://Alaboudi1.jsbin.com/vinuram/13/edit?js",
-      binURL3: "https://Alaboudi1.jsbin.com/vinuram/14/edit?js,console,output",
-      expertHypothesis1: "You are selecting the data associated with the column wrongly.",
+      description: `<h3>Why is my if/else JS statement using jQuery not working?</h3>
+      I was playing around with the code from the w3schools editor which illustrates a jQuery animate function. 
+      I want to try and make this movement reversible though, so I added an if/else statement to allow the div to move back if it had already been clicked. 
+      Here is my code for between the script tags:`,
+      binURL1: "https://Alaboudi1.jsbin.com/nuxeheh/1/edit?output",
+      binURL2: "https://Alaboudi1.jsbin.com/nuxeheh/2/edit?html,css,js",
+      binURL3: "https://Alaboudi1.jsbin.com/nuxeheh/2/edit?html,css,js,output",
+      expertHypothesis1: "You are not assigning a callback to the click event.",
       evidence1:
-        "Check if you are correctly taking the values from your dataset and assign them to the corresponding variable i.e. the x, y, and z axises.",
-      expertHypothesis2: "You have a problem in the way you map the data to width or height.",
+        "Check if you have a callback function to the click event. JQuery has this pattern: $('#htmlId').click(callback)",
+      expertHypothesis2: "You not setting the new animation position correctly.",
       evidence2:
-        "check the method that set the width and the height and see if the calculations are correct.",
-      expertHypothesis3: "Your data is not correctly formated.",
-      evidence3: "Check if your are data is correct and has no formating problems.",
-      buggyLine1: 2,
-      buggyLine2: 46,
-      buggyLine3: 11
+        "Check that the new position value is set correctly and in pixels. For example: 15px.",
+      expertHypothesis3: "You are binding to the wrong event.",
+      evidence3:
+        "Check if your the correct event for triggering the animation. For example: click or hover.",
+      buggyLine1: 4,
+      buggyLine2: 15,
+      buggyLine3: 20,
+      links: [
+        { topic: "JQuery Click Event API", link: "http://api.jquery.com/click/" },
+        { topic: "JQuery Animation API", link: "http://api.jquery.com/animate/" }
+      ]
     }
   }
 };

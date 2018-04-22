@@ -100,7 +100,7 @@ export const getExpertHypothesesExample = example =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
             <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
-                <b>This the hypothesis I used to fix the bug!</b>
+                <b>I believe that this a correct hypothesis.</b>
             </label>
         </div>
     </div>
@@ -129,7 +129,7 @@ export const getBuggyLinesExample = example =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="buggyLineApprove${index}">
             <label class="custom-control-label text-success" for="buggyLineApprove${index}">
-                <b>This bug line helped me to fix the bug!</b>
+                <b>I believe that this is the bug location.</b>
             </label>
         </div>
     </div>
@@ -165,7 +165,7 @@ const getExampleHypotheses = (hypotheses = false, index, subExample) => html`
               : `<input type="checkbox" class="custom-control-input" id="hypothesisApprove${index}">`
           }
               <label class="custom-control-label text-success" for="hypothesisApprove${index}">
-                  <b>This the hypothesis I used to fix the bug!</b>
+                  <b>I believe that this a correct hypothesis.</b>
               </label>
           </div>
       </div>

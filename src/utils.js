@@ -7,7 +7,7 @@ import task1 from "./task1.png";
 // @ts-ignore
 import task2 from "./task2.png";
 // @ts-ignore
-import task3 from "./task3.png";
+import task3 from "./task3.gif";
 
 export const welcome = () => html`
 <div class="jumbotron">
@@ -19,7 +19,7 @@ export const welcome = () => html`
     <p class="lead"> Once upon a time, you were sitting on your desk trying to write down your one billion worth application :). Then an ugly bug showed up to ruin your dream of selling your application to Google. The bug threw "NullPointerException" error message and then crashed your application.
     You set back and started thinking about what could cause this bug. Your first hypothesis was that it must be a null value in the array which causes my application to crash when the reading process happened. You went and checked every value in the array to see if there is any null value there.
     To your surprise, you have not found any null values in the array. 
-    Disparate, you reached out to a friend and described your application buggy behavior and the error message you got. 
+    Desperate, you reached out to a friend and described your application buggy behavior and the error message you got. 
     Your friend proposed a hypothesis that this bug happened because you were accessing the array with an index that was greater than its capacity. 
     You went back and checked the value of the index variable, and it was 10, and your array length was 8. You fixed that bug and now your application is working and ready to be sold to Google. The End.
     </p>
@@ -123,8 +123,10 @@ export const task = (tasks, participant) => {
     <h1 class="display-4">Task # ${participant.current.task}</h1>
     <h3>Stage # ${participant.current.subtask}</h3>
     <p class="lead"> Please read the following bug report and write down your hypotheses.${
-          tasks[`subtaskInfo${participant.current.subtask}`]['information']
-        } <b> You have ${tasks[`subtaskInfo${participant.current.subtask}`]['time']} minutes to complete this stage.</b> </p>
+      tasks[`subtaskInfo${participant.current.subtask}`]["information"]
+    } <b> You have ${
+    tasks[`subtaskInfo${participant.current.subtask}`]["time"]
+  } minutes to complete this stage.</b> </p>
         <hr class="my-4">
     <p>${task.description}</p>
     <button id="refresh" class="btn btn-primary float-right">refresh</button>
@@ -146,6 +148,14 @@ export const task = (tasks, participant) => {
               ? `<img class="card-img-top" src=${task2} alt="application state">`
               : `<img class="card-img-top" src=${task3} alt="application state">`
         }
+    </div>
+    <br>
+    <div style='display: ${participant.current.subtask !== 1 ? `block` : `none`}'>
+    <p class="lead"><b>This is a list of related documentations:</b></p>
+        <ul>
+            ${task.links.map(l => `<li><a href=${l.link} target="_blank">${l.topic}</a></li>`).join("")}
+        </ul>
+          
     </div>
     <br>
     <div class="card text-center">
@@ -223,7 +233,7 @@ export const getHypothesisForum = (
             : `<input type="checkbox" class="custom-control-input" id="hypothesisApprove${index}">`
         }
             <label class="custom-control-label text-success" for="hypothesisApprove${index}">
-                <b>This is the hypothesis I used to fix the bug!</b>
+                <b>I believe that this a correct hypothesis.</b>
             </label>
         </div>
     </div>
@@ -257,7 +267,7 @@ export const getExpertHypotheses = task =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
             <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
-                <b>This is the hypothesis I used to fix the bug!</b>
+                <b>I believe that this a correct hypothesis.</b>
             </label>
         </div>
     </div>
@@ -286,7 +296,7 @@ export const getBuggyLines = task =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="buggyLineApprove${index}">
             <label class="custom-control-label text-success" for="buggyLineApprove${index}">
-                <b>This bug line helped me to fix the bug!</b>
+                <b>I believe that this is the bug location.</b>
             </label>
         </div>
     </div>

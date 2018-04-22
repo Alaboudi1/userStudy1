@@ -94,8 +94,8 @@ const tasks = () => {
   content = utils.task(experiment.tasks, participant);
   ui.render("contents", content);
   if (participant.current.subtask === 3) {
-    timeF = 960000;
-    timeR = 660000;
+    timeF = 1200000;
+    timeR = 600000;
     message = `You only have ${(timeF - timeR) /
       60000} minute remaining!. Please consider using expert help if you there is one available for you.`;
     ui.attachEvent(ui.getElement("bugFixAnswerYes"), "click", () => {
@@ -162,6 +162,7 @@ const saveSubtask = () => {
     participant.tasks[`task${participant.current.task}`].expertHelp &&
     participant.current.subtask === 3
   ) {
+    console.log(participant.tasks[`task${participant.current.task}`])
     const expert =
       participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`];
     if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "expertHypotheses") {
@@ -213,13 +214,13 @@ const saveSubtask = () => {
       return;
     }
   } else if (
-    participant.current.subtask == 3 &&
+    // participant.current.subtask == 3 &&
     !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
       .timeUp && participant.tasks[`task${participant.current.task}`].fixedBug 
   ) {
     const approve = hypotheses.filter(h => h.status);
     if (approve.length == 0) {
-      alert("You either need to pick which of your hypotheses helped you to fix the bug or ask of expert help.");
+      alert("You need to pick which of your hypotheses or expert help set you on the right track to fix the bug.");
       return;
     }
   }
@@ -295,11 +296,11 @@ const survey = () => {
     );
   });
 };
-// ui.attachEvent(ui.getElement("skip"), "click", () => {
-//   participant.current.task = ui.getElement("select").value;
-//   participant.current.subtask = 1;
-//   renderPage("task");
-// });
+ui.attachEvent(ui.getElement("skip"), "click", () => {
+  participant.current.task = ui.getElement("select").value;
+  participant.current.subtask = 1;
+  renderPage("task");
+});
 db.init().then(payload => {
   console.log(payload.val());
   if (payload.val()) {
