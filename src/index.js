@@ -124,6 +124,11 @@ const tasks = () => {
         saveSubtask();
       });
     });
+  } else if (participant.current.subtask === 2){
+    timeF = 600000;
+    timeR = 420000;
+    message = `You only have ${(timeF - timeR) / 60000} minute remaining!.`;
+    ui.attachEvent(ui.getElement("button"), "click", saveSubtask);
   } else {
     timeF = 420000;
     timeR = 300000;
