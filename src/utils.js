@@ -5,37 +5,33 @@ import exampleImage from "./example.png";
 // @ts-ignore
 import task1 from "./task1.png";
 // @ts-ignore
-import task2 from "./task2.png";
+import task2 from "./task2.gif";
 // @ts-ignore
 import task3 from "./task3.gif";
 
 export const welcome = () => html`
 <div class="jumbotron">
     <h1 class="display-4">Welcome!</h1>
-    <p class="lead">Thank you for participating in this study! The study will take around two hours to complete. The aim here is to carefully examine the debugging activity through understanding how developers generate and use hypotheses about the cause of a bug.
+    <p class="lead">Thank you for participating! This study will last approximately two hours. By participating, you will help researchers better understand debugging and how developers generate and use hypotheses about the cause of a bug.
     </p>
     
     <h2>A Story:</h2>
-    <p class="lead"> Once upon a time, you were sitting on your desk trying to write down your one billion worth application :). Then an ugly bug showed up to ruin your dream of selling your application to Google. The bug threw "NullPointerException" error message and then crashed your application.
-    You set back and started thinking about what could cause this bug. Your first hypothesis was that it must be a null value in the array which causes my application to crash when the reading process happened. You went and checked every value in the array to see if there is any null value there.
-    To your surprise, you have not found any null values in the array. 
-    Desperate, you reached out to a friend and described your application buggy behavior and the error message you got. 
-    Your friend proposed a hypothesis that this bug happened because you were accessing the array with an index that was greater than its capacity. 
-    You went back and checked the value of the index variable, and it was 10, and your array length was 8. You fixed that bug and now your application is working and ready to be sold to Google. The End.
+    <p class="lead"> Once upon a time, you were sitting at your desk trying to write the app that will launch your multimillion dollar company. Then an ugly bug appears. You see a  "NullPointerException" message and your application crashes. You sit back and start thinking, what might cause this bug? Your first hypothesis is that there must be a null value in the array, which is then being dereferenced and causing the exception. You check every value in the array to see if any is null. To your surprise, you find no null values in the array. Frustrated, you reach out to a friend and describe your application’s buggy behavior and the error message you got. Your friend suggests a hypothesis: perhaps you accessed the array with an index outside its bounds. You look for evidence to reject or confirm this hypothesis, checking the value of the index variable. You find it was 10, and your array length was 8. You fix that bug. Your application is now working. The End.
     </p>
     <h2>The Study:</h2>
     <p class="lead"> 
-    The above story is not fictional. It happened to almost all of us with some variations. We come across a bug, and we hypothesize that the bug occurs because of a particular wrong implementation we did in the code. Then we spend some time testing this hypothesis to see if this is the real cause of the bug. If we are unable to fix the bug, we seek help from colleagues or online developers community such as StackOverflow. The help can in a form of hypotheses that we can use to fix the bug.
- In this study, we want to investigate this phenomenon by asking you to complete three tasks that each contains a buggy application taken from StackOverflow. Each task, you will be asked to write down your hypotheses, and how you would go about testing these hypotheses before you use them to try to fix the bug in the application. If you are unable to fix the bug using your hypotheses, you may have access to expert help by clicking the expert help button. 
+    The above story is fictional, yet familiar. We encounter a bug and hypothesize that the bug occurs because of something incorrect in the implementation of the code. We spend time testing this hypothesis to see if this is the real cause of the bug. If we are unable to fix the bug, we seek help from colleagues or from the community, such as through StackOverflow. This help may suggest new and better hypotheses, which we may then test and eventually use to fix the bug. 
     </p>
     <p class="lead"> 
-    In more detail, each task has three stages. In the first stage, you will be asked to write down your hypotheses and the hypotheses testing steps by only having access to the bug report, the application user interfaces and a picture of the correct output. In the second stage, you will be asked to generate more hypotheses after gaining access to the source code, but you will be not able to debug the code yet. In the third subtask, you will be asked to fix the bug by trying your hypotheses. You also can debug the application using the conventional 'console.log' statements. If you are not able to fix the bug using your hypotheses, and you are not able to generate any more hypotheses, you can check if you have the option to get expert help. The expert help will be either a set of potential buggy lines or pre-generated hypotheses about the cause of the bug.
-    </p>
+    In this study, you will complete three tasks that each contain a buggy snippet of code, taken from StackOverflow. In each task, you will be asked to write down your hypotheses. The next steps you will take is to write how would you test these hypotheses before using them to fix the bug. If you are unable to fix the bug using your own hypotheses, for some tasks, you may be given access to expert help.    </p>
       <p class="lead">
-     <b> Click Example button to start with an example of the experiment. </b>
+     Each task has three stages. In Stage 1, you will be given a bug report, the application’s user interface, and a picture of the correct output and be asked to write down your initial hypotheses and next steps. In Stage 2, you will be shown the code of the buggy snippet and again asked to update your hypotheses and next steps based on what you have learned. In Stage 3, you will be able to edit and run the code and will be asked to fix the bug using your hypotheses and next steps. You also can debug the code using 'console.log' statements. If you are not able to fix the bug using your own hypotheses or generate any further hypotheses, you can check if you have the option to get expert help. The expert help will be either a set of lines suggested by an expert that might be buggy or expert hypotheses about the cause of the bug.
+    </p>
+    <p class="lead">
+     <b> Click the Start button to see an example of the three debugging stages you will see in the study. </b>
     </p>
     <div style="width: 500px; margin:auto;">
-        <button id="ExampleStart" data-role="assessment" class="btn btn-primary btn-lg btn-block"> Example</button>
+        <button id="ExampleStart" data-role="assessment" class="btn btn-primary btn-lg btn-block"> Start</button>
         <br>
     </div>
 `;
@@ -153,7 +149,9 @@ export const task = (tasks, participant) => {
     <div style='display: ${participant.current.subtask !== 1 ? `block` : `none`}'>
     <p class="lead"><b>This is a list of related documentations:</b></p>
         <ul>
-            ${task.links.map(l => `<li><a href=${l.link} target="_blank">${l.topic}</a></li>`).join("")}
+            ${task.links
+              .map(l => `<li><a href=${l.link} target="_blank">${l.topic}</a></li>`)
+              .join("")}
         </ul>
           
     </div>
@@ -217,11 +215,11 @@ export const getHypothesisForum = (
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="hypothesis"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is the underling cause of the bug?</label>
+            <label for="hypothesis"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is a possible underlying reason for the bug?</label>
             <textarea class="form-control" id="hypothesis${index}" rows="3">${hypothesis}</textarea>
         </div>
         <div class="form-group">
-            <label for="evidence"><b>Testing Steps</b>: what are the steps that you are going to take to check whether this hypothesis is valid or not?.</label>
+            <label for="evidence"><b>Next Steps</b>: What steps would you take to check if this hypothesis is true?</label>
             <textarea class="form-control" id="evidence${index}" rows="3">${evidence}</textarea>
         </div>
         <div class="custom-control custom-checkbox " style="display:${
@@ -233,7 +231,7 @@ export const getHypothesisForum = (
             : `<input type="checkbox" class="custom-control-input" id="hypothesisApprove${index}">`
         }
             <label class="custom-control-label text-success" for="hypothesisApprove${index}">
-                <b>I believe that this a correct hypothesis.</b>
+                <b>I believe that this is a correct hypothesis.</b>
             </label>
         </div>
     </div>
@@ -242,20 +240,20 @@ export const getHypothesisForum = (
 
 //////
 export const getExpertHypotheses = task =>
-  [1, 2, 3]
+  [1, 2]
     .map(
       index => html`
 <h5 class="card-title">Hypothesis # ${index} </h5>
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="expertHypothesis${index}"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is the underling cause of the bug?</label>
+            <label for="expertHypothesis${index}"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is a possible underlying reason for the bug?</label>
             <textarea class="form-control" id="expertHypothesis${index}" rows="3"disabled>${
         task["expertHypothesis" + index]
       }</textarea>
         </div>
         <div class="form-group">
-              <label for="evidence"><b>Testing Steps</b>: what are the steps that you are going to take to check whether this hypothesis is valid or not?.</label>
+              <label for="evidence"><b>Next Steps</b>: What steps would you take to check if this hypothesis is true?</label>
               <textarea class="form-control" id="expertEvidence${index}" rows="3" disabled>${
         task["evidence" + index]
       }</textarea>
@@ -267,7 +265,7 @@ export const getExpertHypotheses = task =>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
             <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
             <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
-                <b>I believe that this a correct hypothesis.</b>
+                <b>I believe that this is a correct hypothesis.</b>
             </label>
         </div>
     </div>
@@ -277,7 +275,7 @@ export const getExpertHypotheses = task =>
     .join("");
 
 export const getBuggyLines = task =>
-  [1, 2, 3]
+  [1, 2]
     .map(
       index => html`
 <h5 class="card-title">Buggy Line # ${index} </h5>

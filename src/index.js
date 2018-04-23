@@ -8,7 +8,10 @@ import * as utils from "./utils";
 import * as ui from "./UI";
 import * as db from "./db";
 import { example } from "./example";
-let timerForce, timerReminder;
+let timerForce,
+  timerReminder,
+  timeOutsideTask = 0,
+  timerForOutsideTask;
 
 export const renderPage = page => {
   ui.clearAll();
@@ -113,9 +116,10 @@ const tasks = () => {
       participant.tasks[`task${participant.current.task}`].fixedBug = false;
       ui.attachEvent(ui.getElement("button"), "click", () => {
         participant.tasks[`task${participant.current.task}`]["participantCode"] = ui.getElement(
-          "participantCode").value;
-          participant.tasks[`task${participant.current.task}`]["whyNotFixBug"] = ui.getElement(
-            "whyNotFixBug"
+          "participantCode"
+        ).value;
+        participant.tasks[`task${participant.current.task}`]["whyNotFixBug"] = ui.getElement(
+          "whyNotFixBug"
         ).value;
         saveSubtask();
       });
@@ -162,11 +166,11 @@ const saveSubtask = () => {
     participant.tasks[`task${participant.current.task}`].expertHelp &&
     participant.current.subtask === 3
   ) {
-    console.log(participant.tasks[`task${participant.current.task}`])
+    console.log(participant.tasks[`task${participant.current.task}`]);
     const expert =
       participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`];
     if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "expertHypotheses") {
-      expert.ExpertHypotheses = [1, 2, 3].map(
+      expert.ExpertHypotheses = [1, 2].map(
         i =>
           ui.getElement("expertWhy" + i).value == "" //validate the why is entered
             ? "missingExpertWhy"
@@ -185,7 +189,7 @@ const saveSubtask = () => {
       );
     }
     if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "buggyLines") {
-      expert.buggyLines = [1, 2, 3].map(
+      expert.buggyLines = [1, 2].map(
         i =>
           ui.getElement("buggyLineWhy" + i).value == "" //validate the why is entered
             ? "buggyLineWhy"
@@ -216,11 +220,14 @@ const saveSubtask = () => {
   } else if (
     // participant.current.subtask == 3 &&
     !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
-      .timeUp && participant.tasks[`task${participant.current.task}`].fixedBug 
+      .timeUp &&
+    participant.tasks[`task${participant.current.task}`].fixedBug
   ) {
     const approve = hypotheses.filter(h => h.status);
     if (approve.length == 0) {
-      alert("You need to pick which of your hypotheses or expert help set you on the right track to fix the bug.");
+      alert(
+        "You need to pick which of your hypotheses or expert help set you on the right track to fix the bug."
+      );
       return;
     }
   }
@@ -296,11 +303,12 @@ const survey = () => {
     );
   });
 };
-ui.attachEvent(ui.getElement("skip"), "click", () => {
-  participant.current.task = ui.getElement("select").value;
-  participant.current.subtask = 1;
-  renderPage("task");
-});
+// ui.attachEvent(ui.getElement("skip"), "click", () => {
+//   participant.current.task = ui.getElement("select").value;
+//   participant.current.subtask = 1;
+//   if (participant.current.task == 4) renderPage("survey");
+//   else renderPage("task");
+// });
 db.init().then(payload => {
   console.log(payload.val());
   if (payload.val()) {
@@ -341,3 +349,15 @@ export const start = () => {
   setTimerReminder(600000, "You only have 5 minutes remaining!"); //10 min
   setTimerForce(900000, "You reached the time limit!", "assessment"); // 15 min
 };
+document.addEventListener("visibilitychange", function() {
+  if (document.visibilityState == "hidden" && participant.current.subtask != 1) {
+    timerForOutsideTask = setInterval(() => timeOutsideTask++, 1000);
+  } else if (document.visibilityState == "visible" && participant.current.subtask != 1) {
+    clearInterval(timerForOutsideTask);
+    participant.tasks[`task${participant.current.task}`][
+      `subtask${participant.current.subtask}`
+    ].timeOutsideTask += timeOutsideTask;
+    console.log(participant);
+    timeOutsideTask = 0;
+  }
+});

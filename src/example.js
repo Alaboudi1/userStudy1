@@ -74,21 +74,21 @@ export const experimentExample = example => {
 };
 
 export const getExpertHypothesesExample = example =>
-  [1, 2, 3]
+  [1, 2]
     .map(
       index => html`
 <h5 class="card-title">Hypothesis # ${index} </h5>
 <p class="card-text">
     <div class="border-bottom border-dark ">
         <div class="form-group">
-            <label for="expertHypothesis${index}"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is the underling cause of the bug?</label>
+            <label for="expertHypothesis${index}"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is a possible underlying reason for the bug?</label>
 
             <textarea class="form-control" id="expertHypothesis${index}" rows="3"disabled>${
         example["example1"]["expertHypothesis" + index]
       }</textarea>
         </div>
         <div class="form-group">
-              <label for="evidence"><b>Testing Steps</b>: How would go about testing your hypothesis.</label>
+              <label for="evidence"><b>Next Steps</b>: What steps would you take to check if this hypothesis is true?</label>
               <textarea class="form-control" id="expertEvidence${index}" rows="3" disabled>${
         example["example1"]["evidence" + index]
       }</textarea>
@@ -110,7 +110,7 @@ export const getExpertHypothesesExample = example =>
     .join("");
 
 export const getBuggyLinesExample = example =>
-  [1, 2, 3]
+  [1, 2]
     .map(
       index => html`
 <h5 class="card-title">Buggy Line # ${index} </h5>
@@ -143,13 +143,13 @@ const getExampleHypotheses = (hypotheses = false, index, subExample) => html`
   <p class="card-text">
       <div class="border-bottom border-dark ">
           <div class="form-group">
-              <label for="hypothesis"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is the underling cause of the bug?</label>
+              <label for="hypothesis"><b>Hypothesis</b>: Based on what you have learned so far, what do you think is a possible underlying reason for the bug?</label>
               <textarea class="form-control" id="hypothesis${index}" rows="3">${
   hypotheses ? "The image name is misspelled or the image extension in the src is wrong" : ""
 }</textarea>
           </div>
           <div class="form-group">
-              <label for="evidence"><b>Testing Steps</b>: what are the steps that you are going to take to check whether this hypothesis is valid or not?.</label>
+              <label for="evidence"><b>Testing Steps</b>: What steps would you take to check if this hypothesis is true?</label>
               <textarea class="form-control" id="evidence${index}" rows="3">${
   hypotheses
     ? "check the name of the image and its extension. usually the extension .png or .jpg"

@@ -96,34 +96,34 @@ export const experiment = {
       I have the following html code and when i pull it up in my browsers the image either doesn't show up, or it shows a broken
       image.`,
       binURL1: "https://jsbin.com/toyuxih/6/edit?output",
-      binURL2: "https://Alaboudi1.jsbin.com/budihaquci/1/edit?html",
-      binURL3: "https://Alaboudi1.jsbin.com/budihaquci/1/edit?html,output",
+      binURL2: "https://jsbin.com/yajuhe/1/edit?html",
+      binURL3: "https://jsbin.com/yajuhe/1/edit?html,output",
       expertHypothesis1: "The path to the image is not correct.",
       evidence1:
-        "check if the path is either written correctly as absolute path or relative path  ",
+        "Check if the path is either written correctly as absolute path or relative path  ",
       expertHypothesis2: "The image name is misspelled or the image extension in the src is wrong",
       evidence2:
-        "check the name of the image and its extension. usually the extension .png or .jpg",
-      expertHypothesis3: "the image does not contain valid permission.",
-      evidence3: "if the image has 755 permission.",
+        "Check the name of the image and its extension. usually the extension .png or .jpg",
+      // expertHypothesis3: "the image does not contain valid permission.",
+      // evidence3: "if the image has 755 permission.",
       buggyLine1: 10,
       buggyLine2: 12,
-      buggyLine3: 5
+      // buggyLine3: 5
     },
     subExample1: {
       time: 7,
       information:
-        "Here you only have access to the bug report and the application UI. You can interact with the application via the GUI. Please write as many hypotheses as you can think."
+        "Please read the following bug report and write down your initial hypotheses about potential causes of the bug. In Stage 1, you have access to the bug report and the application UI. You can interact with the application through its GUI. Please write down all the hypotheses you think of."
     },
     subExample2: {
-      time: 7,
+      time: 10,
       information:
-        "Below is the code for the bug report you just viewed. At this stage, you may read the code, but may not run the code. Based on what you learn from reading the code, please update your hypothe(s), removing hypotheses you have ruled out, adding additional hypotheses you might have, and revising hypotheses that still seem plausible."
+        "In Stage 2, you can read the buggy code snippet as well as the listed documentation describing related framework functions and concepts (please read only the linked documentation). Based on what you learn, please update your hypothesis or hypotheses, removing hypotheses you have ruled out, adding additional hypotheses you might have, and revising hypotheses that still seem plausible."
     },
     subExample3: {
-      time: 15,
+      time: 20,
       information:
-        "You have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
+        "In Stage 3,you have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
     }
   },
   tasks: {
@@ -132,17 +132,17 @@ export const experiment = {
     subtaskInfo1: {
       time: 7,
       information:
-        "Here you only have access to the bug report and the application UI. You can interact with the application via the GUI. Please write as many hypotheses as you can think."
+      "Please read the following bug report and write down your initial hypotheses about potential causes of the bug. In Stage 1, you have access to the bug report and the application UI. You can interact with the application through its GUI. Please write down all the hypotheses you think of."
     },
     subtaskInfo2: {
-      time: 7,
+      time: 10,
       information:
-        "Below is the code for the bug report you just viewed. At this stage, you may read the code, but may not run the code. Based on what you learn from reading the code, please update your hypothe(s), removing hypotheses you have ruled out, adding additional hypotheses you might have, and revising hypotheses that still seem plausible."
+        "In Stage 2, you can read the buggy code snippet as well as the listed documentation describing related framework functions and concepts (please read only the linked documentation). Based on what you learn, please update your hypothesis or hypotheses, removing hypotheses you have ruled out, adding additional hypotheses you might have, and revising hypotheses that still seem plausible."
     },
     subtaskInfo3: {
-      time: 15,
+      time: 20,
       information:
-        "You have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
+        "In Stage 3,you have access to full implementation detail.Try to fix the bug and feel free to add more hypotheses."
     },
     task1: {
       description: `
@@ -153,21 +153,21 @@ export const experiment = {
       HTML: I created a few test links in the div which I've hidden with a CSS class.
       JS: I am trying to use JavaScript to make them visible when the mouse is over the div. For what it's worth, I've also tried document.getElementsByClassName(menulinks").style.visibility="visible"; without any luck and I've tried accomplishing the same thing using opacity instead of visibility and that made no difference.
       Thank you.`,
-      binURL1: "https://Alaboudi1.jsbin.com/vabolok/6/edit?output,console",
-      binURL2: "https://Alaboudi1.jsbin.com/vabolok/7/edit?html,js,css",
+      binURL1: "https://jsbin.com/vabolok/6/edit?output,console",
+      binURL2: "https://jsbin.com/vabolok/7/edit?html,js,css",
       binURL3: "https://jsbin.com/vabolok/11/edit?html,css,js,console,output",
       expertHypothesis1: "Not using the correct CSS property.",
       evidence1:
         "Check if you are using the correct CSS property to change the visibility of an element. Example: visibility: 'visible' or 'hidden', or  display: 'none' or 'block'",
-      expertHypothesis2: "You are using the wrong DOM API or not using it correctly.",
+      expertHypothesis2: "You are using the wrong DOM API or not using getElementsByClassName correctly.",
       evidence2:
         "Check of you are using the correct DOM API. Also remember: document.getElementById returns an HTML element that has the same id, document.getElementsByClassName returns a HTMLCollection that you have to iterate over.",
-      expertHypothesis3: "You are subscribing to the wrong event.",
-      evidence3:
-        "make sure you spell the event name correctly(e.g. 'click' and not 'onclick'). Also, check you have used the addEventListener API correctly (e.g. element.addEventListener(event,callback))",
+      // expertHypothesis3: "You are subscribing to the wrong event.",
+      // evidence3:
+      //   "Make sure you spell the event name correctly(e.g. 'click' and not 'onclick'). Also, check you have used the addEventListener API correctly (e.g. element.addEventListener(event,callback))",
       buggyLine1: 2,
       buggyLine2: 5,
-      buggyLine3: 3,
+      // buggyLine3: 3,
       links: [
         {
           topic: "document.getElementsByClassName",
@@ -185,37 +185,34 @@ export const experiment = {
     },
     task2: {
       description: `
-      <h3>React Multiple Fetch from state </h3>
-      so I am trying to fetch from dogs API twice using the dog type to get the dog image  but I just get "TypeError: Cannot read property 'message' of undefined". Im fairly new to React so if it looks messy im sorry! Thanks in advance!`,
-      binURL1: "https://jsbin.com/qazoyis/47/edit?console,output",
-      binURL2: "https://Alaboudi1.jsbin.com/qazoyis/57/edit?js",
-      binURL3: "https://Alaboudi1.jsbin.com/qazoyis/60/edit?js,console,output",
-      expertHypothesis1: "You have a fetching dependency.",
+      <h3>TypeError: this is undefined - React JS, Javascript</h3>
+      I am trying to implement a simple react component which change the image on clicking. I am getting below error while loading my page which has below react component. What am i doing wrong? I am fairly new to Javascript and React JS. Error seems to be in the setstate line. 
+      Error - TypeError: this is undefined`,
+      binURL1: "https://jsbin.com/zojilaj/3/edit?console,output",
+      binURL2: "https://jsbin.com/zojilaj/3/edit?js",
+      binURL3: "https://jsbin.com/zojilaj/4/edit?js,console,output",
+      expertHypothesis1: "You are not creating initial state.",
       evidence1:
-        "Check if you have two or more unchain fetch calls but they have dependency in their contents. For example you are using an object inside the second fetch that suppose to arrive from the first fetch.",
+        "Check if you have created initial state in the constructor. For example: this.state = {}.",
       expertHypothesis2:
-        "You are trying to access an object that is still being downloaded from the server.",
+        "You are not binding the scope of 'this' for the callback.",
       evidence2:
-        "Check that you are only accessing the object after making sure that it is available. For example, check if you have a condition that assure whether the object you are trying to access is not undefined",
-      expertHypothesis3: "you are not using setState properly.",
-      evidence3:
-        "setState is an asynchronous function. If you try to access the state immediately after changing it, check that you are doing it through a callback. For example, this.setState(newState, callback)",
-      buggyLine1: 42,
-      buggyLine2: 65,
-      buggyLine3: 38,
+        "Check that you are binding the callback for the click event with 'this'. For example: callback.bind(this)",
+      // expertHypothesis3: "You are not using setState properly.",
+      // evidence3:
+      //   "SetState is an asynchronous function. If you try to access the state immediately after changing it, check that you are doing it through a callback. For example, this.setState(newState, callback)",
+      buggyLine1: 5,
+      buggyLine2: 31,
+      // buggyLine3: 20,
       links: [
         {
-          topic: "Http Fetch API",
-          link: "https://developers.google.com/web/updates/2015/03/introduction-to-fetch"
-        },
-        {
-          topic: "Conditional Rendering",
-          link: "https://reactjs.org/docs/conditional-rendering.html"
+          topic: "Event Binding",
+          link: "https://medium.freecodecamp.org/react-binding-patterns-5-approaches-for-handling-this-92c651b5af56"
         },
         {
           topic: "SetState API",
           link:
-            "https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous"
+            "https://reactjs.org/docs/state-and-lifecycle.html"
         }
       ]
     },
@@ -233,12 +230,12 @@ export const experiment = {
       expertHypothesis2: "You not setting the new animation position correctly.",
       evidence2:
         "Check that the new position value is set correctly and in pixels. For example: 15px.",
-      expertHypothesis3: "You are binding to the wrong event.",
-      evidence3:
-        "Check if your the correct event for triggering the animation. For example: click or hover.",
+      // expertHypothesis3: "You are binding to the wrong event.",
+      // evidence3:
+      //   "Check if your the correct event for triggering the animation. For example: click or hover.",
       buggyLine1: 4,
       buggyLine2: 15,
-      buggyLine3: 20,
+      // buggyLine3: 20,
       links: [
         { topic: "JQuery Click Event API", link: "http://api.jquery.com/click/" },
         { topic: "JQuery Animation API", link: "http://api.jquery.com/animate/" }

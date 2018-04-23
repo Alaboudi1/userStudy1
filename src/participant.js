@@ -68,6 +68,7 @@ export const participant = {
         timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
+        timeOutsideTask: 0,
         hypotheses: [
           {
             hypothesis: "",
@@ -80,6 +81,7 @@ export const participant = {
         timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
+        timeOutsideTask: 0,
         hypotheses: [
           {
             hypothesis: "",
@@ -126,6 +128,7 @@ export const participant = {
         timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
+        timeOutsideTask: 0,
         hypotheses: [
           {
             hypothesis: "",
@@ -138,6 +141,7 @@ export const participant = {
         timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
+        timeOutsideTask: 0,
         hypotheses: [
           {
             hypothesis: "",
@@ -148,6 +152,13 @@ export const participant = {
         ExpertHypotheses: [
           {
             hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
             status: false,
             why: ""
           }
@@ -171,12 +182,13 @@ export const participant = {
             hypothesis: "",
             evidence: ""
           }
-        ],
+        ]
       },
       subtask2: {
         timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
+        timeOutsideTask: 0,
         hypotheses: [
           {
             hypothesis: "",
@@ -189,6 +201,7 @@ export const participant = {
         timeUp: false,
         subtaskStartTime: "",
         subtaskEndTime: "",
+        timeOutsideTask: 0,
         hypotheses: [
           {
             hypothesis: "",
