@@ -181,7 +181,7 @@ export const task = (tasks, participant) => {
             : `none`
         }'>
         <br>
-        <h4 class="text-danger"> Expert Help: Please go through them all if possible and used what you think is correct.</h4>
+        <h4 class="text-danger"> Expert Help: Please go through them all if possible and indicate how they helped or did not help you to fix the bug.</h4>
         <div id="expertHelpSection" class="card-body">
         </div>
         

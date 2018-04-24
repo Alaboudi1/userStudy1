@@ -311,12 +311,12 @@ const survey = () => {
     );
   });
 };
-ui.attachEvent(ui.getElement("skip"), "click", () => {
-  participant.current.task = ui.getElement("select").value;
-  participant.current.subtask = 1;
-  if (participant.current.task == 4) renderPage("survey");
-  else renderPage("task");
-});
+// ui.attachEvent(ui.getElement("skip"), "click", () => {
+//   participant.current.task = ui.getElement("select").value;
+//   participant.current.subtask = 1;
+//   if (participant.current.task == 4) renderPage("survey");
+//   else renderPage("task");
+// });
 db.init().then(payload => {
   console.log(payload.val());
   if (payload.val()) {
