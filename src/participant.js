@@ -62,6 +62,30 @@ export const participant = {
             hypothesis: "",
             evidence: ""
           }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
+          {
+            line: "",
+            status: false,
+            why: ""
+          }
         ]
       },
       subtask2: {
@@ -74,6 +98,30 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             status: false
+          }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
+          {
+            line: "",
+            status: false,
+            why: ""
           }
         ]
       },
@@ -94,9 +142,19 @@ export const participant = {
             hypothesis: "",
             status: false,
             why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
           }
         ],
         buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
           {
             line: "",
             status: false,
@@ -122,6 +180,30 @@ export const participant = {
             hypothesis: "",
             evidence: ""
           }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
+          {
+            line: "",
+            status: false,
+            why: ""
+          }
         ]
       },
       subtask2: {
@@ -134,6 +216,30 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             status: false
+          }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
+          {
+            line: "",
+            status: false,
+            why: ""
           }
         ]
       },
@@ -154,9 +260,19 @@ export const participant = {
             hypothesis: "",
             status: false,
             why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
           }
         ],
         buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
           {
             line: "",
             status: false,
@@ -182,6 +298,30 @@ export const participant = {
             hypothesis: "",
             evidence: ""
           }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
+          {
+            line: "",
+            status: false,
+            why: ""
+          }
         ]
       },
       subtask2: {
@@ -194,6 +334,30 @@ export const participant = {
             hypothesis: "",
             evidence: "",
             status: false
+          }
+        ],
+        ExpertHypotheses: [
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
+          }
+        ],
+        buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
+          {
+            line: "",
+            status: false,
+            why: ""
           }
         ]
       },
@@ -214,9 +378,19 @@ export const participant = {
             hypothesis: "",
             status: false,
             why: ""
+          },
+          {
+            hypothesis: "",
+            status: false,
+            why: ""
           }
         ],
         buggyLines: [
+          {
+            line: "",
+            status: false,
+            why: ""
+          },
           {
             line: "",
             status: false,

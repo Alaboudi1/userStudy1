@@ -23,9 +23,12 @@ export const welcome = () => html`
     The above story is fictional, yet familiar. We encounter a bug and hypothesize that the bug occurs because of something incorrect in the implementation of the code. We spend time testing this hypothesis to see if this is the real cause of the bug. If we are unable to fix the bug, we seek help from colleagues or from the community, such as through StackOverflow. This help may suggest new and better hypotheses, which we may then test and eventually use to fix the bug. 
     </p>
     <p class="lead"> 
-    In this study, you will complete three tasks that each contain a buggy snippet of code, taken from StackOverflow. In each task, you will be asked to write down your hypotheses. The next steps you will take is to write how would you test these hypotheses before using them to fix the bug. If you are unable to fix the bug using your own hypotheses, for some tasks, you may be given access to expert help.    </p>
+    In this study, you will complete three tasks that each contain a buggy snippet of code, taken from StackOverflow. In each task, you will be asked to write down your hypotheses. The next steps you will task is to write how would you test these hypotheses before using them to fix the bug. If you are unable to fix the bug using your own hypotheses, for some tasks, you may be given access to expert help.    </p>
       <p class="lead">
-     Each task has three stages. In Stage 1, you will be given a bug report, the application’s user interface, and a picture of the correct output and be asked to write down your initial hypotheses and next steps. In Stage 2, you will be shown the code of the buggy snippet and again asked to update your hypotheses and next steps based on what you have learned. In Stage 3, you will be able to edit and run the code and will be asked to fix the bug using your hypotheses and next steps. You also can debug the code using 'console.log' statements. If you are not able to fix the bug using your own hypotheses or generate any further hypotheses, you can check if you have the option to get expert help. The expert help will be either a set of lines suggested by an expert that might be buggy or expert hypotheses about the cause of the bug.
+     Each task has three stages. In Stage 1, you will be given a bug report, the application’s user interface, and a picture of the correct output. In that stage, will be asked to write down your initial hypotheses and next steps to test these hypotheses. 
+     In Stage 2, you will be shown the code of the buggy snippet and again asked to update your hypotheses and next steps for testing these hypotheses based on what you have learned. Also, in that stage, you may have access to expert help.
+      In Stage 3, you will be able to edit, run and debug the code. Debug can be done using 'console.log' statements.  The objective in this stage is to fix the bug using your hypotheses or through the expert help. 
+      The expert help will be either a set of lines suggested by an expert that might be buggy or expert hypotheses about the cause of the bug.
     </p>
     <p class="lead">
      <b> Click the Start button to see an example of the three debugging stages you will see in the study. </b>
@@ -107,7 +110,6 @@ export const assessment = (assessment, participant) => {
   return questionHTML;
 };
 
-///////
 export const task = (tasks, participant) => {
   const task = tasks["task" + participant.current.task];
   const hypotheses =
@@ -157,6 +159,8 @@ export const task = (tasks, participant) => {
     </div>
     <br>
     <div class="card text-center">
+    
+        <h4 class="text-danger"> Your Hypotheses Section.</h4>
         <div class="card-header">
             Hypotheses and Triggers
         </div>
@@ -170,16 +174,19 @@ export const task = (tasks, participant) => {
         </div>
         <br>
         <br>
-        <div style='display: ${participant.current.subtask == 3 ? `block` : `none`}'>     
-            <div style='display: ${
-              participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled`
-                ? `block`
-                : `none`
-            }'>
-                <br>
-                <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
-                <div id="expertHelpSection" class="card-body"></div>
-            </div>
+        <div style='display: ${
+          participant.tasks[`task${participant.current.task}`].typeExpertHelp !== `controlled` &&
+          participant.current.subtask != 1
+            ? `block`
+            : `none`
+        }'>
+        <br>
+        <h4 class="text-danger"> Expert Help: Please go through them all if possible and used what you think is correct.</h4>
+        <div id="expertHelpSection" class="card-body">
+        </div>
+        
+    </div>
+     <div style='display: ${participant.current.subtask == 3 ? `block` : `none`}'>   
             <br>
             <h4> Did you fix the bug ?</h4>
             <button data-role="Yes" class="btn btn-success btn-lg" id="bugFixAnswerYes">YES</button>
@@ -190,11 +197,13 @@ export const task = (tasks, participant) => {
             <br>
         </div>
         <br>
+        
     <div style='width: 500px; margin:auto; display: ${
       participant.current.subtask == 3 ? `none` : `block`
     }'>
             <button id="button" data-role="assessment" class="btn btn-primary btn-lg btn-block"> submit</button>
     </div>
+    
     <br>
 
 `;
@@ -239,7 +248,7 @@ export const getHypothesisForum = (
     `;
 
 //////
-export const getExpertHypotheses = task =>
+export const getExpertHypotheses = (task, response) =>
   [1, 2]
     .map(
       index => html`
@@ -260,11 +269,16 @@ export const getExpertHypotheses = task =>
           </div>
         <div class="form-group">
             <label for="expertWhy${index}">If this was not helpful, why was it not helpful? </label>
-            <textarea class="form-control" id="expertWhy${index}" rows="3"></textarea>
+            <textarea class="form-control" id="expertWhy${index}" rows="3">${
+        response[index-1].why
+      }</textarea>
         </div>
-        <div class="custom-control custom-checkbox d-flex justify-content-start">
-            <input type="checkbox" class="custom-control-input " id="expertHypothesisApprove${index}">
-            <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
+        <div class="custom-control custom-checkbox " style="display:flex">
+            ${
+          response[index-1].status
+            ? `<input type="checkbox" class="custom-control-input" id="expertHypothesisApprove${index}" checked>`
+            : `<input type="checkbox" class="custom-control-input" id="expertHypothesisApprove${index}">`
+        }   <label class="custom-control-label text-success" for="expertHypothesisApprove${index}">
                 <b>I believe that this is a correct hypothesis.</b>
             </label>
         </div>
@@ -274,7 +288,7 @@ export const getExpertHypotheses = task =>
     )
     .join("");
 
-export const getBuggyLines = task =>
+export const getBuggyLines = (task, response) =>
   [1, 2]
     .map(
       index => html`
@@ -289,11 +303,16 @@ export const getBuggyLines = task =>
         </div>
         <div class="form-group">
             <label for="buggyLineWhy${index}">If this was not helpful, why was it not helpful? </label>
-            <textarea class="form-control" id="buggyLineWhy${index}" rows="3"></textarea>
+            <textarea class="form-control" id="buggyLineWhy${index}" rows="3">${
+        response[index-1].why
+      }</textarea>
         </div>
-        <div class="custom-control custom-checkbox d-flex justify-content-start">
-            <input type="checkbox" class="custom-control-input " id="buggyLineApprove${index}">
-            <label class="custom-control-label text-success" for="buggyLineApprove${index}">
+        <div class="custom-control custom-checkbox " style="display:flex">
+        ${
+          response[index-1].status
+            ? `<input type="checkbox" class="custom-control-input" id="buggyLineApprove${index}" checked>`
+            : `<input type="checkbox" class="custom-control-input" id="buggyLineApprove${index}">`
+        }             <label class="custom-control-label text-success" for="buggyLineApprove${index}">
                 <b>I believe that this is the bug location.</b>
             </label>
         </div>

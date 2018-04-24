@@ -106,9 +106,15 @@ export const experiment = {
         "Check the name of the image and its extension. usually the extension .png or .jpg",
       // expertHypothesis3: "the image does not contain valid permission.",
       // evidence3: "if the image has 755 permission.",
-      buggyLine1: 10,
-      buggyLine2: 12,
+      buggyLine1: 11,
+      buggyLine2: 13,
       // buggyLine3: 5
+      links: [
+        {
+          topic: "HTML <img> Tag",
+          link: "https://www.w3schools.com/tags/tag_img.asp"
+        }
+      ]
     },
     subExample1: {
       time: 7,
@@ -222,8 +228,8 @@ export const experiment = {
       I want to try and make this movement reversible though, so I added an if/else statement to allow the div to move back if it had already been clicked. 
       Here is my code for between the script tags:`,
       binURL1: "https://Alaboudi1.jsbin.com/nuxeheh/1/edit?output",
-      binURL2: "https://Alaboudi1.jsbin.com/nuxeheh/2/edit?html,css,js",
-      binURL3: "https://Alaboudi1.jsbin.com/nuxeheh/2/edit?html,css,js,output",
+      binURL2: "https://Alaboudi1.jsbin.com/nuxeheh/2/edit?css,js",
+      binURL3: "https://Alaboudi1.jsbin.com/nuxeheh/2/edit?css,js,console,output",
       expertHypothesis1: "You are not assigning a callback to the click event.",
       evidence1:
         "Check if you have a callback function to the click event. JQuery has this pattern: $('#htmlId').click(callback)",

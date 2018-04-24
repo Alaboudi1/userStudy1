@@ -31,13 +31,24 @@ export const experimentExample = example => {
         <img class="card-img-top" src=${exampleImage} alt="application state">
         </div>
         <br>
+        <div style='display: ${example.currentSubExample !== 1 ? `block` : `none`}'>
+    <p class="lead"><b>This is a list of related documentations:</b></p>
+        <ul>
+            ${example.example1.links
+              .map(l => `<li><a href=${l.link} target="_blank">${l.topic}</a></li>`)
+              .join("")}
+        </ul>
+          
+    </div>
         <div class="card text-center">
+        <h4 class="text-danger"> Your Hypotheses Section.</h4>
+
             <div class="card-header">
                 Hypotheses and Evidences
             </div>
             <div id="hypotheses" class="card-body">
                 ${
-                  example.currentSubExample === 3
+                  example.currentSubExample != 1
                     ? getExampleHypotheses(true, 1, 3)
                     : getExampleHypotheses(false, 1, 2)
                 }
@@ -47,10 +58,11 @@ export const experimentExample = example => {
             </div>
             <br>
             <br>
-            <div style='display: ${example.currentSubExample === 3 ? `block` : `none`};  margin-top:10px'>     
-                 <button data-role="assessment" class="btn btn-warning btn-lg" id="expertHelpButton"> Expert Help</button>
+            <div style='display: ${example.currentSubExample != 1 ? `block` : `none`};  margin-top:10px'>   
+            <h4 class="text-danger"> Expert Help: Please go through them all if possible and used what you think is correct.</h4>  
                  <div id="expertHelpSection" class="card-body"></div>
-  
+            </div>
+            <div style='display: ${example.currentSubExample ==3  ? `block` : `none`};  margin-top:10px'>     
                  <br>
                  <h4> Did you fix the bug ?</h4>
                  <button data-role="Yes" class="btn btn-success btn-lg" id="bugFixAnswerYes">YES</button>
@@ -189,7 +201,7 @@ export const example = () => {
   experiment.example.numberOfHypotheses = 1;
   content = experimentExample(experiment.example);
   ui.render("contents", content);
-  ui.attachEvent(ui.getElement("expertHelpButton"), "click", expertHelpExample);
+  expertHelpExample();
   ui.attachEvent(ui.getElement("addHypothesisExample"), "click", addHypothesisExample);
   ui.attachEvent(
     ui.getElement("refresh"),

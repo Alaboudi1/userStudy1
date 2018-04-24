@@ -52,12 +52,12 @@ const setTimerForce = (time, message, page) => {
 const setTimerReminder = (time, message) => {
   timerReminder = setTimeout(() => {
     alert(message);
-    if (
-      participant.current.subtask === 3 &&
-      participant.tasks[`task${participant.current.task}`].typeExpertHelp != "controlled" &&
-      !participant.tasks[`task${participant.current.task}`].expertHelp
-    )
-      ui.getElement("expertHelpButton").focus();
+    // if (
+    //   participant.current.subtask === 3 &&
+    //   participant.tasks[`task${participant.current.task}`].typeExpertHelp != "controlled" &&
+    //   !participant.tasks[`task${participant.current.task}`].expertHelp
+    // )
+    // ui.getElement("expertHelpButton").focus();
   }, time);
 };
 participant.current.startTime = getTime();
@@ -97,6 +97,7 @@ const tasks = () => {
   content = utils.task(experiment.tasks, participant);
   ui.render("contents", content);
   if (participant.current.subtask === 3) {
+    expertHelp();
     timeF = 1200000;
     timeR = 600000;
     message = `You only have ${(timeF - timeR) /
@@ -124,7 +125,8 @@ const tasks = () => {
         saveSubtask();
       });
     });
-  } else if (participant.current.subtask === 2){
+  } else if (participant.current.subtask === 2) {
+    expertHelp();
     timeF = 600000;
     timeR = 420000;
     message = `You only have ${(timeF - timeR) / 60000} minute remaining!.`;
@@ -141,7 +143,7 @@ const tasks = () => {
   participant.tasks[`task${participant.current.task}`][
     `subtask${participant.current.subtask}`
   ].subtaskStartTime = getTime();
-  ui.attachEvent(ui.getElement("expertHelpButton"), "click", expertHelp);
+  // ui.attachEvent(ui.getElement("expertHelpButton"), "click", expertHelp);
   //@ts-ignore
   ui.attachEvent(
     ui.getElement("refresh"),
@@ -166,11 +168,7 @@ const saveSubtask = () => {
     // @ts-ignore
     el.status = status !== null ? status.checked : false;
   });
-  console.log(participant);
-  if (
-    participant.tasks[`task${participant.current.task}`].expertHelp &&
-    participant.current.subtask === 3
-  ) {
+  if (participant.tasks[`task${participant.current.task}`].expertHelp) {
     console.log(participant.tasks[`task${participant.current.task}`]);
     const expert =
       participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`];
@@ -217,13 +215,11 @@ const saveSubtask = () => {
       !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
         .timeUp
     ) {
-      alert(
-        "You asked for expert help, but you have not indicated whether each help was useful or not."
-      );
+      alert("You have not indicated whether each expert help was useful or not.");
       return;
     }
-  } else if (
-    // participant.current.subtask == 3 &&
+  }else if (
+    participant.current.subtask == 3 &&
     !participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask}`]
       .timeUp &&
     participant.tasks[`task${participant.current.task}`].fixedBug
@@ -279,10 +275,17 @@ const addHypothesis = () => {
 
 const expertHelp = () => {
   let content;
+  if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "controlled") return;
   if (participant.tasks[`task${participant.current.task}`].typeExpertHelp == "expertHypotheses") {
-    content = utils.getExpertHypotheses(experiment.tasks[`task${participant.current.task}`]);
+    content = utils.getExpertHypotheses(
+      experiment.tasks[`task${participant.current.task}`],
+      participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask-1}`].ExpertHypotheses
+    );
   } else {
-    content = utils.getBuggyLines(experiment.tasks[`task${participant.current.task}`]);
+    content = utils.getBuggyLines(
+      experiment.tasks[`task${participant.current.task}`],
+      participant.tasks[`task${participant.current.task}`][`subtask${participant.current.subtask-1}`].buggyLines
+    )
   }
   ui.getElement("expertHelpSection").innerHTML = content;
   participant.tasks[`task${participant.current.task}`].expertHelp = true;
@@ -308,12 +311,12 @@ const survey = () => {
     );
   });
 };
-// ui.attachEvent(ui.getElement("skip"), "click", () => {
-//   participant.current.task = ui.getElement("select").value;
-//   participant.current.subtask = 1;
-//   if (participant.current.task == 4) renderPage("survey");
-//   else renderPage("task");
-// });
+ui.attachEvent(ui.getElement("skip"), "click", () => {
+  participant.current.task = ui.getElement("select").value;
+  participant.current.subtask = 1;
+  if (participant.current.task == 4) renderPage("survey");
+  else renderPage("task");
+});
 db.init().then(payload => {
   console.log(payload.val());
   if (payload.val()) {
@@ -347,6 +350,7 @@ ui.attachEvent(ui.getElement("ExampleStart"), "click", () => {
   ui.getElement("welcome").classList.remove("active", "text-primary");
   ui.getElement("example").classList.add("active", "text-primary");
 });
+
 export const start = () => {
   renderPage("assessment");
   ui.getElement("example").classList.remove("active", "text-primary");
