@@ -268,7 +268,7 @@ export const getExpertHypotheses = (task, response) =>
       }</textarea>
           </div>
         <div class="form-group">
-            <label for="expertWhy${index}">If this was not helpful, why was it not helpful? </label>
+            <label for="expertWhy${index}">Is this helpful? why or why not? </label>
             <textarea class="form-control" id="expertWhy${index}" rows="3">${
         response[index-1].why
       }</textarea>
@@ -302,7 +302,7 @@ export const getBuggyLines = (task, response) =>
       }</textarea>
         </div>
         <div class="form-group">
-            <label for="buggyLineWhy${index}">If this was not helpful, why was it not helpful? </label>
+            <label for="buggyLineWhy${index}">Is this helpful? why or why not? </label>
             <textarea class="form-control" id="buggyLineWhy${index}" rows="3">${
         response[index-1].why
       }</textarea>

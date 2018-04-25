@@ -106,7 +106,7 @@ export const getExpertHypothesesExample = example =>
       }</textarea>
           </div>
         <div class="form-group">
-            <label for="expertWhy${index}">If this hypothesis is not relevant, please indicate why? </label>
+            <label for="expertWhy${index}">Is this helpful? why or why not? </label>
             <textarea class="form-control" id="expertWhy${index}" rows="3"></textarea>
         </div>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
@@ -135,7 +135,7 @@ export const getBuggyLinesExample = example =>
       }</textarea>
         </div>
         <div class="form-group">
-            <label for="buggyLineWhy${index}">If this bug line is not relevant, please indicate why? </label>
+            <label for="buggyLineWhy${index}">Is this helpful? why or why not? </label>
             <textarea class="form-control" id="buggyLineWhy${index}" rows="3"></textarea>
         </div>
         <div class="custom-control custom-checkbox d-flex justify-content-start">
